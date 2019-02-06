@@ -8,12 +8,3 @@ class Barbery(models.Model):
     address = models.CharField(max_length=1000, unique=True)
     createdDate = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(max_length=200, unique=True, allow_unicode=True, blank=True)
-
-class UserProfile(models.Model):
-	pass
-
-class TimeSlot(models.Model):
-    pass
-
-class Reservation(models.Model):
-    pass
