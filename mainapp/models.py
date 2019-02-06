@@ -19,3 +19,9 @@ class TimeSlot(models.Model):
     startTime = models.DateTimeField()
     duration = models.DurationField(default=timedelta(hours=1))
     reserved = models.BooleanField(default=False)
+
+class Reservation(models.Model):
+    user = models.ForeignKey(UserProfile, related_name='reservations', on_delete=models.CASCADE)
+    slot = models.OneToOneField(TimeSlot, related_name='reservation', on_delete=models.CASCADE)
+    createdDate = models.DateTimeField(auto_now_add=True)
+    
