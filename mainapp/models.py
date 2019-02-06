@@ -4,7 +4,7 @@ from datetime import timedelta
 
 # Create your models here.
 class Barbery(models.Model):
-    user = models.OneToOneField(User, related_name='barbery', on_delete=models.CASCADE)
+    barber = models.OneToOneField(User, related_name='barbery', on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=1000, unique=True)
     createdDate = models.DateTimeField(auto_now_add=True)
