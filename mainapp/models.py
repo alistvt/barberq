@@ -15,6 +15,11 @@ class Barbery(User):
     def __str__(self):
         return '{name}'.format(name=self.name)
 
+    def save(self, *args, **kwargs):
+        if not self.username:
+            self.username = self.email.split('@')[0]
+        super(Barbery, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = _("Barbery")
         verbose_name_plural = _("Barberies")
@@ -31,6 +36,11 @@ class UserProfile(User):
 
     def __str__(self):
         return '{first_name} {last_name}'.format(first_name=self.first_name, last_name=self.last_name)
+
+    def save(self, *args, **kwargs):
+        if not self.username:
+            self.username = self.email.split('@')[0]
+        super(UserProfile, self).save(*args, **kwargs)
 
 
 class TimeSlot(models.Model):
