@@ -15,7 +15,6 @@ class Barbery(User):
     def __str__(self):
         return '{name}'.format(name=self.name)
 
-    # Always write the class Meta for all of your models, and put these three items in it
     class Meta:
         verbose_name = _("Barbery")
         verbose_name_plural = _("Barberies")
@@ -36,8 +35,6 @@ class UserProfile(User):
 
 class TimeSlot(models.Model):
     barbery = models.ForeignKey(Barbery, related_name='time_slots', on_delete=models.CASCADE)
-
-    # All of you models should contain the 'verbose_name' parameter: Translated and Capital
     created_date = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation Date'))
     start_time = models.DateTimeField(verbose_name=_('Start time'))
     duration = models.DurationField(default=timedelta(hours=1), verbose_name=_('Duration'))
