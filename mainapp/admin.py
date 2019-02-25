@@ -20,3 +20,6 @@ class TimeSlotAdmin(admin.ModelAdmin):
 
 class ReservationAdmin(admin.ModelAdmin):
     pass
+
+
+admin.site.register(Barbery, BarberyAdmin)
