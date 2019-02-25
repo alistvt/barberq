@@ -15,16 +15,20 @@ class Barbery(User):
     def __str__(self):
         return '{name}'.format(name=self.name)
 
-    # todo fix
     # Always write the class Meta for all of your models, and put these three items in it
     class Meta:
         verbose_name = _("Barbery")
         verbose_name_plural = _("Barberies")
-        ordering = ['created_date']
+        ordering = ['name']
 
 
 class UserProfile(User):
     pass
+
+    class Meta:
+        verbose_name = _("User profile")
+        verbose_name_plural = _("User profiles")
+        ordering = ['username']
 
     def __str__(self):
         return '{first_name} {last_name}'.format(first_name=self.first_name, last_name=self.last_name)
@@ -39,6 +43,11 @@ class TimeSlot(models.Model):
     duration = models.DurationField(default=timedelta(hours=1), verbose_name=_('Duration'))
     reserved = models.BooleanField(default=False, verbose_name=_('Is reserved'))
 
+    class Meta:
+        verbose_name = _("Time slot")
+        verbose_name_plural = _("Time slots")
+        ordering = ['-start_time']
+
     def __str__(self):
         return '{barbery}@{date}'.format(barbery=self.barbery, date=self.start_time)
 
@@ -47,6 +56,11 @@ class Reservation(models.Model):
     user = models.ForeignKey(UserProfile, related_name='reservations', on_delete=models.CASCADE)
     slot = models.OneToOneField(TimeSlot, related_name='reservation', on_delete=models.CASCADE)
     created_date = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation date'))
+
+    class Meta:
+        verbose_name = _("Reservation")
+        verbose_name_plural = _("Reservations")
+        ordering = ['slot']
 
     def __str__(self):
         return '{user}-{slot}'.format(user=self.user, slot=self.slot)
