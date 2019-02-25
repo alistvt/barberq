@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="115b60ab-325d-4805-bd6b-0a1750389b42" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BarberQ.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BarberQ.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mainapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/admin.py" afterDir="false" />
     </list>
     <list id="a0ce9fa8-2063-4f72-a3db-2abb36612c12" name="Default" comment="" />
@@ -40,7 +37,7 @@
         <entry file="file://$PROJECT_DIR$/mainapp/admin.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="14" column="75" selection-start-line="14" selection-start-column="75" selection-end-line="14" selection-end-column="75" />
+              <caret line="14" column="79" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -270,12 +267,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1549545101460</updated>
-      <workItem from="1551108141485" duration="2129000" />
+      <workItem from="1551108141485" duration="2317000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7351000" />
+    <option name="totallyTimeSpent" value="7539000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -365,7 +362,7 @@
     <entry file="file://$PROJECT_DIR$/mainapp/admin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="14" column="75" selection-start-line="14" selection-start-column="75" selection-end-line="14" selection-end-column="75" />
+          <caret line="14" column="79" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
