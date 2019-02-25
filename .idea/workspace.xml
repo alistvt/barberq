@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="115b60ab-325d-4805-bd6b-0a1750389b42" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/mainapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainapp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BarberQ/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/BarberQ/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,13 +15,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mainapp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+            <state relative-caret-position="105">
+              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BarberQ/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+              <folding>
+                <element signature="e#631#663#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -38,6 +50,7 @@
         <option value="$PROJECT_DIR$/../djangobook/djangobook/settings.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/mainapp/models.py" />
+        <option value="$PROJECT_DIR$/BarberQ/urls.py" />
       </list>
     </option>
   </component>
@@ -240,12 +253,12 @@
       <option name="presentableId" value="Default" />
       <updated>1550663992729</updated>
       <workItem from="1550663994209" duration="785000" />
-      <workItem from="1551098433609" duration="1944000" />
+      <workItem from="1551098433609" duration="2200000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2729000" />
+    <option name="totallyTimeSpent" value="2985000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -332,10 +345,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mainapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="60" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
+        <state relative-caret-position="105">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BarberQ/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="32" lean-forward="true" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+          <folding>
+            <element signature="e#631#663#0" expanded="true" />
           </folding>
         </state>
       </provider>
