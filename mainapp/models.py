@@ -1,6 +1,8 @@
-from django.db import models
-from django.contrib.auth.models import User
 from datetime import timedelta
+
+from django.contrib.auth.models import User
+from django.db import models
+
 
 # Create your models here.
 class Barbery(models.Model):
@@ -24,4 +26,3 @@ class Reservation(models.Model):
     user = models.ForeignKey(UserProfile, related_name='reservations', on_delete=models.CASCADE)
     slot = models.OneToOneField(TimeSlot, related_name='reservation', on_delete=models.CASCADE)
     createdDate = models.DateTimeField(auto_now_add=True)
-    
