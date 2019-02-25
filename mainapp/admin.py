@@ -11,7 +11,8 @@ class BarberyAdmin(admin.ModelAdmin):
     # add_form = UserCreationForm
 
     # Take a look at django admin form documentation
-
+    exclude = ('password',)
+    fields = ('name', ('first_name', 'last_name'), 'email', 'address', 'is_active',)
     list_display = ('name', 'first_name', 'last_name', 'address',)
     search_fields = ('name', 'first_name', 'last_name', 'address',)
     #todo fix
