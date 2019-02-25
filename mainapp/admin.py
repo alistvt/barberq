@@ -39,8 +39,10 @@ class TimeSlotAdmin(admin.ModelAdmin):
 class ReservationAdmin(admin.ModelAdmin):
     exclude = ('created_date', )
     fields = ('user', 'slot', )
-    list_display = ('__str__', 'user', 'slot__barbery', 'slot__start_time', 'slot__duration', )
-    search_fields = ('user', 'barbery', )
+    list_display = ('__str__', 'user', )
+    # todo??? list_display = ('__str__', 'user', 'slot__barbery', 'slot__start_time', 'slot__duration', )
+    # should be written functions
+    search_fields = ('user', 'slot__barbery', )
     ordering = ('-created_date', )
 
 
