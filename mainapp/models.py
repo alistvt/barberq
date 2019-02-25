@@ -6,10 +6,10 @@ from django.db import models
 
 # Create your models here.
 class Barbery(User):
-    name = models.CharField(max_length=100)
-    address = models.CharField(max_length=1000, unique=True)
-    created_date = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(max_length=200, unique=True, allow_unicode=True, blank=True)
+    name = models.CharField(max_length=100, verbose_name='barbery\'s name')
+    address = models.CharField(max_length=1000, unique=True, verbose_name='address')
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name='creation date')
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode=True, blank=True, verbose_name='slug for url')
 
     def __str__(self):
         return '{name}'.format(name=self.name)
