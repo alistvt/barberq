@@ -24,10 +24,10 @@ class UserProfile(User):
 
 class TimeSlot(models.Model):
     barbery = models.ForeignKey(Barbery, related_name='time_slots', on_delete=models.CASCADE)
-    created_date = models.DateTimeField(auto_now_add=True)
-    start_time = models.DateTimeField()
-    duration = models.DurationField(default=timedelta(hours=1))
-    reserved = models.BooleanField(default=False)
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name='creation date')
+    start_time = models.DateTimeField(verbose_name='start time')
+    duration = models.DurationField(default=timedelta(hours=1), verbose_name='duration')
+    reserved = models.BooleanField(default=False, verbose_name='is reserved')
 
     def __str__(self):
         return '{barbery}@{date}'.format(barbery=self.barbery, date=self.start_time)
@@ -36,7 +36,7 @@ class TimeSlot(models.Model):
 class Reservation(models.Model):
     user = models.ForeignKey(UserProfile, related_name='reservations', on_delete=models.CASCADE)
     slot = models.OneToOneField(TimeSlot, related_name='reservation', on_delete=models.CASCADE)
-    created_date = models.DateTimeField(auto_now_add=True)
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name='creation date')
 
     def __str__(self):
         return '{user}-{slot}'.format(user=self.user, slot=self.slot)
