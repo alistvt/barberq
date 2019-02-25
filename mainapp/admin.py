@@ -4,7 +4,10 @@ from .models import Barbery, UserProfile, TimeSlot, Reservation
 
 
 class BarberyAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'first_name', 'last_name', 'address',)
+    search_fields = ('name', 'first_name', 'last_name', 'address',)
+    list_filter = ('created_date',)
+    ordering = ('name',)
 
 
 class UserProfileAdmin(admin.ModelAdmin):
