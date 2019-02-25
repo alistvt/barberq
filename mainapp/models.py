@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 # Create your models here.
@@ -14,6 +15,13 @@ class Barbery(User):
     def __str__(self):
         return '{name}'.format(name=self.name)
 
+    # todo fix
+    # Always write the class Meta for all of your models, and put these three items in it
+    class Meta:
+        verbose_name = _("Barbery")
+        verbose_name_plural = _("Barberies")
+        ordering = ['created_date']
+
 
 class UserProfile(User):
     pass
@@ -24,7 +32,9 @@ class UserProfile(User):
 
 class TimeSlot(models.Model):
     barbery = models.ForeignKey(Barbery, related_name='time_slots', on_delete=models.CASCADE)
-    created_date = models.DateTimeField(auto_now_add=True, verbose_name='creation date')
+    #todo fix
+    # All of you models should containt the 'verbose_name' parameter: Translated and Capital
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation Date'))
     start_time = models.DateTimeField(verbose_name='start time')
     duration = models.DurationField(default=timedelta(hours=1), verbose_name='duration')
     reserved = models.BooleanField(default=False, verbose_name='is reserved')
