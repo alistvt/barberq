@@ -33,8 +33,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mainapp/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+            <state relative-caret-position="270">
+              <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -45,8 +45,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mainapp/admin.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+            <state relative-caret-position="345">
+              <caret line="47" column="46" lean-forward="true" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -262,12 +262,12 @@
       <option name="presentableId" value="Default" />
       <updated>1549545101460</updated>
       <workItem from="1551108141485" duration="8434000" />
-      <workItem from="1551172897895" duration="1878000" />
+      <workItem from="1551172897895" duration="2889000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15534000" />
+    <option name="totallyTimeSpent" value="16545000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -299,7 +299,7 @@
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.493517" weight="0.2369281" />
       <window_info anchor="bottom" id="Thumbnails" order="12" weight="0.3298647" />
       <window_info active="true" anchor="bottom" id="manage.py@pleep_core" order="13" visible="true" weight="0.32810867" />
-      <window_info active="true" anchor="bottom" x="1284" y="842" width="1232" height="238" id="Run" order="14" sideWeight="0.49306297" visible="true" weight="0.3637771" />
+      <window_info active="true" anchor="bottom" x="1284" y="842" width="1232" height="238" id="Run" order="14" sideWeight="0.49306297" visible="true" weight="0.10990712" />
       <window_info anchor="right" id="SciView" order="0" />
       <window_info anchor="right" id="Commander" order="1" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
@@ -350,8 +350,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mainapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="73" lean-forward="true" selection-start-line="73" selection-end-line="73" />
+        <state relative-caret-position="270">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
@@ -360,8 +360,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mainapp/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="36" column="29" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
+        <state relative-caret-position="345">
+          <caret line="47" column="46" lean-forward="true" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>

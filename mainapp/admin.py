@@ -28,21 +28,24 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 
 class TimeSlotAdmin(admin.ModelAdmin):
+    readonly_fields = ('reserved', 'created_date', )
     exclude = ('created_date', )
-    fields = ('barbery', ('start_time', 'duration'), )
+    fields = ('barbery', ('start_time', 'duration'), 'created_date', 'reserved', )
     list_display = ('__str__', 'barbery', 'start_time', 'duration', 'reserved',)
-    search_fields = ('barbery', )
+    search_fields = ('barbery__name', 'barbery__first_name', 'barbery__last_name', 'barbery__address',)
     list_filter = ('reserved', )
     ordering = ('-start_time', )
     raw_id_fields = ('barbery', )
 
 
 class ReservationAdmin(admin.ModelAdmin):
-    exclude = ('created_date', )
-    fields = ('user', 'slot', )
+    readonly_fields = ('created_date', )
+    exclude = ()
+    fields = ('user', 'slot', 'created_date', )
     list_display = ('__str__', 'user', 'slot')
     # list_display = ('__str__', 'user', 'barbery', 'slot__start_time', 'slot__duration', )
-    search_fields = ('user', 'slot__barbery', )
+    search_fields = ('user__first_name', 'user__last_name', 'user__email', 'slot__barbery__name',
+                     'slot__barbery__address')
     ordering = ('-created_date', )
     raw_id_fields = ('slot', 'user', )
 
