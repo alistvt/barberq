@@ -34,6 +34,7 @@ class TimeSlotAdmin(admin.ModelAdmin):
     search_fields = ('barbery', )
     list_filter = ('reserved', )
     ordering = ('-start_time', )
+    raw_id_fields = ('barbery', )
 
 
 class ReservationAdmin(admin.ModelAdmin):
@@ -41,9 +42,9 @@ class ReservationAdmin(admin.ModelAdmin):
     fields = ('user', 'slot', )
     list_display = ('__str__', 'user', 'slot')
     # list_display = ('__str__', 'user', 'barbery', 'slot__start_time', 'slot__duration', )
-    # should be written functions
     search_fields = ('user', 'slot__barbery', )
     ordering = ('-created_date', )
+    raw_id_fields = ('slot', 'user', )
 
 
 admin.site.register(Barbery, BarberyAdmin)
