@@ -35,3 +35,5 @@ class ReservationForm(ModelForm):
         slot = self.cleaned_data['slot']
         if slot.reserved:
             raise ValidationError(_('This slot is reserved.'))
+        return slot
+    
