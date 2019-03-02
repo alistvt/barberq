@@ -36,4 +36,3 @@ class ReservationForm(ModelForm):
         if slot.reserved:
             raise ValidationError(_('This slot is reserved.'))
         return slot
-    

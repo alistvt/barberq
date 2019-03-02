@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import slugify
-
 # Create your models here.
+
+
 class Barbery(User):
     name = models.CharField(max_length=100, verbose_name=_('Barbery\'s name'))
     address = models.CharField(max_length=1000, unique=True, verbose_name=_('Address'))
@@ -17,7 +18,7 @@ class Barbery(User):
 
     def save(self, *args, **kwargs):
         if not self.username:
-            self.username = self.email.split('@')[0]
+            self.username = self.name
         if not self.slug:
             self.slug = slugify(self.name, allow_unicode=True)
 
