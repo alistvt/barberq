@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import AdminPasswordChangeForm
 from mainapp.models import Barbery, Reservation, TimeSlot, UserProfile
-from mainapp.forms import BarberyCreationForm
+from mainapp.forms import BarberyCreationForm, ReservationForm
 
 # Register your models here.
 
