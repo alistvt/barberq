@@ -3,7 +3,7 @@ from datetime import timedelta
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-
+from django.utils.text import slugify
 
 # Create your models here.
 class Barbery(User):
@@ -18,6 +18,9 @@ class Barbery(User):
     def save(self, *args, **kwargs):
         if not self.username:
             self.username = self.email.split('@')[0]
+        if not self.slug:
+            self.slug = slugify(self.name, allow_unicode=True)
+
         super(Barbery, self).save(*args, **kwargs)
 
     class Meta:
