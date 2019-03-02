@@ -1,30 +1,11 @@
-from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.forms import UserCreationForm, AdminPasswordChangeForm
-from .models import Barbery, Reservation, TimeSlot, UserProfile
+from django.contrib.auth.forms import AdminPasswordChangeForm
+from mainapp.models import Barbery, Reservation, TimeSlot, UserProfile
+from mainapp.forms import BarberyCreationForm
+
 # Register your models here.
-
-
-class BarberyCreationForm(UserCreationForm):
-    """
-    A form that creates a user, with no privileges, from the given username and
-    password.
-    """
-    name = forms.CharField(max_length=100, required=True)
-
-    class Meta:
-        model = Barbery
-        fields = ('name', 'email', 'password1', 'password2', 'first_name', 'last_name', 'address', 'is_active')
-
-    def save(self, commit=True):
-        barbery = super(BarberyCreationForm, self).save(commit=True)
-        # barbery.name = self.cleaned_data['name']
-        # barbery.address = self.cleaned_data['address']
-        if commit:
-            barbery.save()
-        return barbery
 
 
 class BarberyAdmin(admin.ModelAdmin):
@@ -60,6 +41,7 @@ class BarberyAdmin(admin.ModelAdmin):
             defaults['form'] = self.add_form
         defaults.update(kwargs)
         return super(BarberyAdmin, self).get_form(request, obj, **defaults)
+
 
 class UserProfileAdmin(admin.ModelAdmin):
     fields = ('email', ('first_name', 'last_name'), 'is_active', )
