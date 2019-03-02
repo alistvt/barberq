@@ -1,23 +1,65 @@
+from django import forms
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.forms import UserCreationForm, AdminPasswordChangeForm
 from .models import Barbery, Reservation, TimeSlot, UserProfile
 # Register your models here.
 
 
-class BarberyAdmin(admin.ModelAdmin):
-    #todo
-    # Model Admins inherited from user model, should always exclude some fields, specially password (it's always excluded in our admins)
-    # In order to create a better profile admin, take a look at django user admin, specially these two lines:
-    # :
-    # form = UserChangeForm
-    # add_form = UserCreationForm
+class BarberyCreationForm(UserCreationForm):
+    """
+    A form that creates a user, with no privileges, from the given username and
+    password.
+    """
+    name = forms.CharField(max_length=100, required=True)
 
-    exclude = ('password', )
-    fields = ('name', ('first_name', 'last_name'), 'email', 'address', 'is_active', )
+    class Meta:
+        model = Barbery
+        fields = ('name', 'email', 'password1', 'password2', 'first_name', 'last_name', 'address', 'is_active')
+
+    def save(self, commit=True):
+        barbery = super(BarberyCreationForm, self).save(commit=True)
+        # barbery.name = self.cleaned_data['name']
+        # barbery.address = self.cleaned_data['address']
+        if commit:
+            barbery.save()
+        return barbery
+
+
+class BarberyAdmin(admin.ModelAdmin):
+    add_form = BarberyCreationForm
+    # fields = ('name', ('first_name', 'last_name'), 'email', 'address', 'is_active', )
+    fieldsets = (
+        (_('Barbery info'), {'fields': (('name', 'is_active'), 'address', )}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
+    )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('name', 'password1', 'password2'),
+        }),
+    )
+    change_password_form = AdminPasswordChangeForm
     list_display = ('name', 'first_name', 'last_name', 'address', 'is_active', )
     search_fields = ('name', 'first_name', 'last_name', 'address', )
     list_filter = ('is_active', )
     ordering = ('name', )
 
+    def get_fieldsets(self, request, obj=None):
+        if not obj:
+            return self.add_fieldsets
+        return super(BarberyAdmin, self).get_fieldsets(request, obj)
+
+    def get_form(self, request, obj=None, **kwargs):
+        """
+        Use special form during user creation
+        """
+        defaults = {}
+        if obj is None:
+            defaults['form'] = self.add_form
+        defaults.update(kwargs)
+        return super(BarberyAdmin, self).get_form(request, obj, **defaults)
 
 class UserProfileAdmin(admin.ModelAdmin):
     fields = ('email', ('first_name', 'last_name'), 'is_active', )
