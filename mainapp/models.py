@@ -74,3 +74,8 @@ class Reservation(models.Model):
 
     def __str__(self):
         return '{user}-{slot}'.format(user=self.user, slot=self.slot)
+
+    def save(self, *args, **kwargs):
+        self.slot.reserved = True
+        self.slot.save()
+        super(Reservation, self).save(*args, **kwargs)
