@@ -9,7 +9,7 @@ from django.utils.text import slugify
 
 class Barbery(User):
     name = models.CharField(max_length=100, verbose_name=_('Barbery\'s name'))
-    address = models.CharField(max_length=1000, unique=True, verbose_name=_('Address'))
+    address = models.CharField(max_length=1000, verbose_name=_('Address'))
     created_date = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation date'))
     slug = models.SlugField(max_length=200, unique=True, allow_unicode=True, blank=True, verbose_name=_('Slug for url'))
 

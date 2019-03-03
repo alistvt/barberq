@@ -18,11 +18,13 @@ class BarberyCreationForm(UserCreationForm):
         fields = ('name', 'email', 'password1', 'password2', 'first_name', 'last_name', 'address', 'is_active')
 
     def save(self, commit=True):
-        barbery = super(BarberyCreationForm, self).save(commit=True)
+        barbery = super(BarberyCreationForm, self).save(commit=False)
+        barbery.username = None
         # barbery.name = self.cleaned_data['name']
         # barbery.address = self.cleaned_data['address']
-        if commit:
-            barbery.save()
+
+        barbery.save()
+
         return barbery
 
 
