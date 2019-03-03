@@ -18,7 +18,7 @@ class BarberyAdmin(admin.ModelAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('name', 'password1', 'password2'),
+            'fields': ('name', 'address', 'password1', 'password2'),
         }),
     )
     change_password_form = AdminPasswordChangeForm

@@ -12,6 +12,7 @@ class BarberyCreationForm(UserCreationForm):
     password.
     """
     name = forms.CharField(max_length=100, required=True)
+    address = forms.CharField(max_length=1000)
 
     class Meta:
         model = Barbery
