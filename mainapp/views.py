@@ -5,3 +5,7 @@ from django.shortcuts import render
 
 def home(request):
     return render(request, 'home.html')
+
+
+def barber_login(request):
+    return render(request, 'templates/login.html')
