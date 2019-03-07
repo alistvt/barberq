@@ -8,13 +8,13 @@
             </li>
               {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-plus"></i> Add slots</a>
+              <a class="nav-link" href="{% url 'mainapp:add_slot' %}"><i class="fa fa-plus"></i> Add slots</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-tasks"></i> Manage slots</a>
+              <a class="nav-link" href="{% url 'mainapp:manage_slots' %}"><i class="fa fa-tasks"></i> Manage slots</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-eye"></i> View reserves</a>
+              <a class="nav-link" href="{% url 'mainapp:view_reserves' %}"><i class="fa fa-eye"></i> View reserves</a>
             </li>
               {% endif %}
           </ul>
