@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm, ValidationError
+from django.forms import ModelForm, ValidationError, Form
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm
 
@@ -39,3 +39,8 @@ class ReservationForm(ModelForm):
         if slot.reserved:
             raise ValidationError(_('This slot is reserved.'))
         return slot
+
+
+class BarberLoginForm(Form):
+    username = forms.CharField(max_length=100)
+    password = forms.PasswordInput()
