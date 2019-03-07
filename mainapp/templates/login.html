@@ -23,6 +23,16 @@
 {#                  <input class="form-check-input" type="checkbox"> Remember me#}
 {#                </label>#}
 {#              </div>#}
+              <ul>
+              {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                <li class="text-danger">
+                    {{ error }}
+                </li>
+                {% endfor %}
+              {% endfor %}
+              </ul>
+
               <button type="submit" class="btn btn-primary">Submit</button>
               {% csrf_token %}
             </form>
