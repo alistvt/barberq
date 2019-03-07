@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ValidationError
 from .forms import BarberLoginForm
@@ -29,10 +30,27 @@ def barber_login(request):
     return render(request, 'login.html', {'form': login_form})
 
 
+@login_required
 def barber_logout(request):
     logout(request)
     return render(request, 'home.html')
 
 
+@login_required
 def barber_profile(request):
+    pass
+
+
+@login_required
+def add_slot(request):
+    pass
+
+
+@login_required
+def manage_slots(request):
+    pass
+
+
+@login_required
+def view_reserves(request):
     pass
