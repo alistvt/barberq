@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
+from django.utils.translation import ugettext_lazy as _
+from django.forms import ValidationError
 from .forms import BarberLoginForm
 
 # Create your views here.
@@ -18,14 +20,13 @@ def barber_login(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                redirect('mainapp:home')
+                return redirect('mainapp:home')
             else:
-                # Return an 'invalid login' error message.
-                # ...
-                pass
-
+                login_form.add_error(password, ValidationError(_('Password doesn\'t match with username!')))
     else:
-        return render(request, 'login.html')
+        login_form = BarberLoginForm()
+
+    return render(request, 'login.html', {'form': login_form})
 
 
 def barber_logout(request):

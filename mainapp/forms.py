@@ -45,5 +45,5 @@ class BarberLoginForm(Form):
     username = forms.CharField(max_length=100)
     password = forms.CharField(widget=forms.PasswordInput())
 
-    def clean_password(self):
-        pass
+    # def clean_password(self):
+    #     # return self.cleaned_data['password']
