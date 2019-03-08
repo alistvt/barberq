@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from django import forms
 from django.forms import ModelForm, ValidationError, Form
 from django.utils.translation import ugettext_lazy as _
@@ -47,3 +48,9 @@ class BarberLoginForm(Form):
 
     # def clean_password(self):
     #     # return self.cleaned_data['password']
+
+
+class AddSlotsForm(Form):
+    slot_start_time = forms.DateTimeField(initial=datetime.now())
+    duration = forms.DurationField(initial=timedelta(hours=1))
+    add_slot_for_a_week = forms.BooleanField()
