@@ -24,6 +24,15 @@ class Barbery(User):
 
         super(Barbery, self).save(*args, **kwargs)
 
+    def num_of_reservations(self):
+        return self.time_slots.filter(reserved=True).count()
+
+    def num_of_time_slots(self):
+        return self.time_slots.all().count()
+
+    num_of_reservations.short_description = _('Reservations')
+    num_of_time_slots.short_description = _('Time Slots')
+
     class Meta:
         verbose_name = _("Barbery")
         verbose_name_plural = _("Barberies")
