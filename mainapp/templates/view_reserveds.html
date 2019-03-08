@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+<br/>
+<br/>
+<div class="row">
+<div class="col-md-6">
+  <h2><i class="fa fa-calendar-alt"></i> Upcoming</h2>
+{#  <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>#}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Date</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for upcoming_reserve in upcoming_reserves %}
+      <tr>
+        <td>{{ upcoming_reserve }}</td>
+        <td>Doe</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+<div class="col-md-6">
+  <h2><i class="fa fa-calendar-check"></i> Passed</h2>
+{#  <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>#}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Contact</th>
+        <th>Date</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for passed_reserve in passed_reserves %}
+      <tr>
+        <td>{{ passed_reserve.reservation.user.firstname }} {{ passed_reserve.reservation.user.lastname }}</td>
+        <td>Doe</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+
+{% endblock %}
