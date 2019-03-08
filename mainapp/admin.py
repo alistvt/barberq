@@ -8,6 +8,7 @@ from mainapp.forms import BarberyCreationForm, ReservationForm
 # Register your models here.
 
 
+@admin.register(Barbery)
 class BarberyAdmin(admin.ModelAdmin):
     add_form = BarberyCreationForm
     # fields = ('name', ('first_name', 'last_name'), 'email', 'address', 'is_active', )
@@ -43,6 +44,7 @@ class BarberyAdmin(admin.ModelAdmin):
         return super(BarberyAdmin, self).get_form(request, obj, **defaults)
 
 
+@admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     fields = ('email', ('first_name', 'last_name'), 'is_active', )
     list_display = ('email', 'first_name', 'last_name', 'is_active', )
@@ -51,6 +53,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     ordering = ('email',)
 
 
+@admin.register(TimeSlot)
 class TimeSlotAdmin(admin.ModelAdmin):
     readonly_fields = ('reserved', 'created_date', )
     exclude = ('created_date', )
@@ -62,6 +65,7 @@ class TimeSlotAdmin(admin.ModelAdmin):
     raw_id_fields = ('barbery', )
 
 
+@admin.register(Reservation)
 class ReservationAdmin(admin.ModelAdmin):
     readonly_fields = ('created_date', )
     exclude = ()
@@ -72,9 +76,3 @@ class ReservationAdmin(admin.ModelAdmin):
                      'slot__barbery__address')
     ordering = ('-created_date', )
     raw_id_fields = ('slot', 'user', )
-
-
-admin.site.register(Barbery, BarberyAdmin)
-admin.site.register(UserProfile, UserProfileAdmin)
-admin.site.register(TimeSlot, TimeSlotAdmin)
-admin.site.register(Reservation, ReservationAdmin)
