@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ValidationError
-from .forms import BarberLoginForm
+from .forms import BarberLoginForm, AddSlotsForm
 from .models import Barbery, Reservation
 
 # Create your views here.
@@ -45,7 +45,8 @@ def barber_profile(request):
 
 @login_required
 def add_slot(request):
-    pass
+    form = AddSlotsForm()
+    return render(request, 'add_slots.html', {'form': form})
 
 
 @login_required
