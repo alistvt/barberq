@@ -106,3 +106,7 @@ venv.bak/
 \.idea/workspace\.xml
 
 \.idea/dictionaries/alis\.xml
+
+\.idea/codeStyles/codeStyleConfig\.xml
+
+\.idea/codeStyles/Project\.xml
