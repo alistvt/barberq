@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block headcdn %}
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+{% endblock %}
+{% block content %}
+<div class="container">
+    <br>
+    <br>
+    <div class="row">
+
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form method="post" action=".">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </form>
+{#            <input type="datetime-local">#}
+{#            <input class="form-group">#}
+{#                <div class="input-group date" id="datetimepicker2" data-target-input="nearest">#}
+{#                    <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker2"/>#}
+{#                    <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">#}
+{#                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>#}
+{#                    </div>#}
+{#                </div>#}
+
+{#            </div>#}
+{#        </div>#}
+{#        <script type="text/javascript">#}
+{#            $(function () {#}
+{#                $('#datetimepicker2').datetimepicker();#}
+{#            });#}
+{#        </script>#}
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+{% endblock %}
