@@ -22,7 +22,7 @@ class BarberyAdmin(admin.ModelAdmin):
         }),
     )
     change_password_form = AdminPasswordChangeForm
-    list_display = ('name', 'first_name', 'last_name', 'address', 'is_active', )
+    list_display = ('name', 'first_name', 'last_name', 'address', 'num_of_time_slots', 'num_of_reservations', 'is_active', )
     search_fields = ('name', 'first_name', 'last_name', 'address', )
     list_filter = ('is_active', )
     ordering = ('name', )
