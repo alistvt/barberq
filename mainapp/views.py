@@ -57,7 +57,7 @@ def manage_slots(request):
 def view_reserves(request):
     now = datetime.now()
     barbery = Barbery.objects.get(username=request.user.username)
-    passed_reserves = barbery.time_slots.filter(reserved=True, start_time__lt=now)
-    upcoming_reserves = barbery.time_slots.filter(reserved=True, start_time__gte=now)
+    passed_reserves = barbery.time_slots.filter(reserved=True, start_time__lt=now).order_by('-start_time')
+    upcoming_reserves = barbery.time_slots.filter(reserved=True, start_time__gte=now).order_by('start_time')
     return render(request, 'view_reserveds.html', {'passed_reserves': passed_reserves,
                                                    'upcoming_reserves': upcoming_reserves, })
