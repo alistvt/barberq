@@ -1,9 +1,11 @@
+from datetime import datetime
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ValidationError
 from .forms import BarberLoginForm
+from .models import Barbery, Reservation
 
 # Create your views here.
 
@@ -53,4 +55,9 @@ def manage_slots(request):
 
 @login_required
 def view_reserves(request):
-    pass
+    now = datetime.now()
+    barbery = Barbery.objects.get(username=request.user.username)
+    passed_reserves = barbery.time_slots.filter(reserved=True, start_time__lt=now)
+    upcoming_reserves = barbery.time_slots.filter(reserved=True, start_time__gte=now)
+    return render(request, 'view_reserveds.html', {'passed_reserves': passed_reserves,
+                                                   'upcoming_reserves': upcoming_reserves, })
