@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import AdminPasswordChangeForm
 from mainapp.models import Barbery, Reservation, TimeSlot, UserProfile
 from mainapp.forms import BarberyCreationForm, ReservationForm
-
+from mainapp.list_filters import SpecialTimesFilter
 # Register your models here.
 
 
@@ -60,7 +60,7 @@ class TimeSlotAdmin(admin.ModelAdmin):
     fields = ('barbery', ('start_time', 'duration'), 'created_date', 'reserved', )
     list_display = ('__str__', 'barbery', 'start_time', 'duration', 'reserved',)
     search_fields = ('barbery__name', 'barbery__first_name', 'barbery__last_name', 'barbery__address',)
-    list_filter = ('reserved', )
+    list_filter = (SpecialTimesFilter, 'reserved', )
     ordering = ('-start_time', )
     raw_id_fields = ('barbery', )
 
