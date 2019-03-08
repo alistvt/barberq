@@ -17,12 +17,12 @@
       </tr>
     </thead>
     <tbody>
-    {% for upcoming_reserve in upcoming_reserves %}
+    {% for slot in upcoming_reserves %}
       <tr>
-        <td>{{ upcoming_reserve }}</td>
-        <td>Doe</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+        <td>{{ slot.reservation.user.first_name }} {{ slot.reservation.user.last_name }}</td>
+        <td>{{ slot.reservation.user.email}}</td>
+        <td>{{ slot.start_time.date }} </td>
+        <td>{{ slot.start_time.time }} </td>
       </tr>
     {% endfor %}
     </tbody>
@@ -41,12 +41,12 @@
       </tr>
     </thead>
     <tbody>
-      {% for passed_reserve in passed_reserves %}
+      {% for slot in passed_reserves %}
       <tr>
-        <td>{{ passed_reserve.reservation.user.firstname }} {{ passed_reserve.reservation.user.lastname }}</td>
-        <td>Doe</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+        <td>{{ slot.reservation.user.first_name }} {{ slot.reservation.user.last_name }}</td>
+        <td>{{ slot.reservation.user.email}}</td>
+        <td>{{ slot.start_time.date }} </td>
+        <td>{{ slot.start_time.time }} </td>
       </tr>
     {% endfor %}
     </tbody>
