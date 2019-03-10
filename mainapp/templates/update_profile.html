@@ -9,26 +9,16 @@
             <form method="POST">
               <div class="form-group">
                 <label for="{{ form.name.id_for_label }}">Name:</label>
-{#                  {{ form.username }}#}
-                <input type="text" name="name" class="form-control" id="name">
+                <input type="text" name="name" class="form-control" id="name" value="{{ form.name.initial }}">
               </div>
               <div class="form-group">
                 <label for="{{ form.email.id_for_label }}">Email:</label>
-{#                  {{ form.password }}#}
-                <input type="email" name="email" class="form-control" required="" id="id_email">
-{#                <input type="password" name="password" class="form-control" id="password">#}
+                <input type="email" name="email" class="form-control" required="" id="id_email" value="{{ form.email.initial }}">
               </div>
               <div class="form-group">
                 <label for="{{ form.address.id_for_label }}">Address:</label>
-{#                  {{ form.password }}#}
-                <input type="text" name="address" class="form-control" required="" id="id_address">
-{#                <input type="password" name="password" class="form-control" id="password">#}
+                <input type="text" name="address" class="form-control" required="" id="id_address" value="{{ form.address.initial }}">
               </div>
-{#              <div class="form-group form-check">#}
-{#                <label class="form-check-label">#}
-{#                  <input class="form-check-input" type="checkbox"> Remember me#}
-{#                </label>#}
-{#              </div>#}
               <ul>
               {% for field, errors in form.errors.items %}
                 {% for error in errors %}
