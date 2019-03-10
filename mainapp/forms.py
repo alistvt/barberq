@@ -57,7 +57,7 @@ class AddSlotsForm(Form):
     add_slot_for_a_week = forms.BooleanField()
 
 
-class BarberUpdateProfileForm(ModelForm):
+class BarberyUpdateProfileForm(ModelForm):
     class Meta:
         model = Barbery
         fields = ['name', 'email', 'address', ]
