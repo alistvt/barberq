@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from django import forms
 from django.forms import ModelForm, ValidationError, Form
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
 from mainapp.models import Reservation, Barbery
@@ -54,3 +55,16 @@ class AddSlotsForm(Form):
     slot_start_time = forms.DateTimeField(initial=datetime.now())
     duration = forms.DurationField(initial=timedelta(hours=1))
     add_slot_for_a_week = forms.BooleanField()
+
+
+class BarberUpdateProfileForm(ModelForm):
+    class Meta:
+        model = Barbery
+        fields = ['name', 'email', 'address', ]
+
+    def clean_email(self):
+        # todo : how should I do this! :(
+        try:
+            User.objects.get(id=self.id)
+        except User.DoesNotExist:
+            pass
