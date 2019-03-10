@@ -35,14 +35,15 @@ def barber_logout(request):
 @login_required
 def barber_profile(request):
     barber = Barbery.objects.get(id=request.user.id)
-    # todo : barber = user
     if request.POST:
         profile_form = BarberyUpdateProfileForm(request.POST, instance=barber)
         if profile_form.is_valid():
             profile_form.save()
             # todo : render a success page or a success message
-    else:
-        profile_form = BarberyUpdateProfileForm()
+        else:
+            return render(request, 'update_profile.html', {'form': profile_form})
+
+    profile_form = BarberyUpdateProfileForm(instance=barber)
     return render(request, 'update_profile.html', {'form': profile_form})
 
 
