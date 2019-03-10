@@ -24,6 +24,13 @@ class Barbery(User):
 
         super(Barbery, self).save(*args, **kwargs)
 
+    def has_free_time(self, start_time, duration):
+        today_slots = self.time_slots.filter(start_time__date=start_time.date)
+        for slot in today_slots:
+            if slot.time + timedelta(slot.duration) > start_time.time or slot.time < start_time.time + timedelta(duration):
+                return False
+        return True
+
     def num_of_reservations(self):
         return self.time_slots.filter(reserved=True).count()
 
