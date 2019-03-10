@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from django import forms
 from django.forms import ModelForm, ValidationError, Form
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -47,8 +48,18 @@ class BarberLoginForm(Form):
     username = forms.CharField(max_length=100)
     password = forms.CharField(widget=forms.PasswordInput())
 
-    # def clean_password(self):
-    #     # return self.cleaned_data['password']
+    def clean(self):
+        username = self.cleaned_data['username']
+        password = self.cleaned_data['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            try:
+                Barbery.objects.get(id=user.id)
+                self.user = user
+            except Barbery.DoesNotExist:
+                raise ValidationError(_('Barber with these credential doesn\'t exist!'))
+        else:
+            raise ValidationError(_('Username and password don\'t match!'))
 
 
 class AddSlotsForm(Form):
@@ -68,3 +79,4 @@ class BarberyUpdateProfileForm(ModelForm):
             User.objects.get(id=self.id)
         except User.DoesNotExist:
             pass
+        return self.email
