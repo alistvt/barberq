@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.shortcuts import redirect, render
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ValidationError
@@ -18,14 +18,8 @@ def barber_login(request):
     if request.POST:
         login_form = BarberLoginForm(request.POST)
         if login_form.is_valid():
-            username = login_form.cleaned_data['username']
-            password = login_form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
+                login(request, login_form.user)
                 return redirect('mainapp:home')
-            else:
-                login_form.add_error(password, ValidationError(_('Password doesn\'t match with username!')))
     else:
         login_form = BarberLoginForm()
 
