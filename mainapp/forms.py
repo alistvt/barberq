@@ -74,9 +74,13 @@ class BarberyUpdateProfileForm(ModelForm):
         fields = ['name', 'email', 'address', ]
 
     def clean_email(self):
-        # todo : how should I do this! :(
+        user = User.objects.get(id=self.instance.id)
+        prev_email = user.email
         try:
-            User.objects.get(id=self.id)
+            if self.cleaned_data['email'] != prev_email:
+                User.objects.get(email=self.cleaned_data['email'])
+                raise ValidationError(_('Email "%(email)s" has been taken.')%{'email':self.cleaned_data['email']})
         except User.DoesNotExist:
             pass
-        return self.email
+
+        return self.cleaned_data['email']
