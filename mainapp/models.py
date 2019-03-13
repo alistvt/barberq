@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import timedelta, date, datetime
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -25,9 +25,10 @@ class Barbery(User):
         super(Barbery, self).save(*args, **kwargs)
 
     def has_free_time(self, start_time, duration):
-        today_slots = self.time_slots.filter(start_time__date=start_time.date)
+        today_slots = self.time_slots.filter(start_time__date=start_time.date())
         for slot in today_slots:
-            if slot.time + timedelta(slot.duration) > start_time.time or slot.time < start_time.time + timedelta(duration):
+            if (slot.start_time + slot.duration > start_time and slot.start_time <= start_time) or \
+               (slot.start_time + slot.duration >= start_time + duration and slot.start_time < start_time + duration):
                 return False
         return True
 
