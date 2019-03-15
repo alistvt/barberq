@@ -1,10 +1,12 @@
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from django import forms
 from django.forms import ModelForm, ValidationError, Form
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+
+from tempus_dominus.widgets import DateTimePicker
 
 from mainapp.models import Reservation, Barbery
 
@@ -63,9 +65,35 @@ class BarberLoginForm(Form):
 
 
 class AddSlotsForm(Form):
-    slot_start_time = forms.DateTimeField(initial=datetime.now())
-    duration = forms.DurationField(initial=timedelta(hours=1))
-    add_slot_for_a_week = forms.BooleanField()
+    start_time = forms.DateTimeField(
+        widget=DateTimePicker(
+            options={
+                'minDate': (
+                    date.today()
+                ).strftime(
+                    '%Y-%m-%d'
+                ),
+                'useCurrent': True,
+                'collapse': False,
+                # 'format': 'LTS',
+            },
+            attrs={
+                'icon_toggle': True,
+            }
+        ),
+    )
+    duration_hours = forms.IntegerField(initial=1)
+    duration_minutes = forms.IntegerField(initial=0)
+    add_for_a_week = forms.BooleanField(required=False)
+
+    def clean_start_time(self):
+        start_time = self.cleaned_data['start_time']
+        # if start_time < datetime.now():
+        #     raise ValidationError(_('Entered time has passed.'))
+        return self.cleaned_data['start_time']
+
+    def clean(self):
+        pass
 
 
 class BarberyUpdateProfileForm(ModelForm):
