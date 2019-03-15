@@ -58,8 +58,7 @@ def add_slot(request):
                                  duration=timedelta(hours=cd['duration_hours'], minutes=cd['duration_minutes']),
                                  add_for_a_week=cd['add_for_a_week'],
                                  barbery=barbery)
-            
-            # todo : render a success page or a success message
+            return render(request, 'add_slots.html', {'form': AddSlotsForm(), 'success':True})
         else:
             return render(request, 'add_slots.html', {'form': add_slot_form})
     add_slot_form = AddSlotsForm()
