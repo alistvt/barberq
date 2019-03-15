@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import slugify
+from django.forms import ValidationError
 # Create your models here.
 
 
@@ -78,6 +79,18 @@ class TimeSlot(models.Model):
 
     def __str__(self):
         return '{barbery}@{date}'.format(barbery=self.barbery, date=self.start_time)
+
+    @staticmethod
+    def create_bulk(start_time, duration, add_for_a_week, barbery):
+        if add_for_a_week:
+            pass
+        else:
+            if barbery.has_free_time(start_time, duration):
+                time_slot = TimeSlot(start_time=start_time, duration=duration, barbery=barbery)
+                time_slot.save()
+            else:
+                raise ValidationError(_('Barber doesn\'t have free time at this time: %(start_time)s') % \
+                                      {'start_time': start_time.strftime("%d-%b-%Y (%H:%M:%S.%f)")})
 
 
 class Reservation(models.Model):
