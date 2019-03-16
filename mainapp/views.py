@@ -67,7 +67,9 @@ def add_slot(request):
 
 @login_required
 def manage_slots(request):
-    pass
+    barbery = Barbery.objects.get(username=request.user.username)
+    slots = barbery.time_slots.all().order_by('-start_time')
+    return render(request, 'manage_slots.html', {'slots': slots, })
 
 
 @login_required
