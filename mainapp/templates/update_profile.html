@@ -1,42 +1,46 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="row" style="margin-top: 10%;">
-        <div class="col-lg-4">
-
-        </div>
-        <div class="col-lg-4">
-            <div class="row" style="border: 1px solid grey; padding: 10%">
-            <form method="POST">
-              <div class="form-group">
-                <label for="{{ form.name.id_for_label }}"><i class="fa fa-user"></i> Name:</label>
-                <input type="text" name="name" class="form-control" id="name" value="{{ form.name.initial }}">
-              </div>
-              <div class="form-group">
-                <label for="{{ form.email.id_for_label }}"><i class="fa fa-envelope-square"></i> Email:</label>
-                <input type="email" name="email" class="form-control" required="" id="id_email" value="{{ form.email.initial }}">
-              </div>
-              <div class="form-group">
-                <label for="{{ form.address.id_for_label }}"><i class="fa fa-map-marker-alt"></i> Address:</label>
-                <input type="text" name="address" class="form-control" required="" id="id_address" value="{{ form.address.initial }}">
-              </div>
-              <ul>
-              {% for field, errors in form.errors.items %}
-                {% for error in errors %}
-                <li class="text-danger">
-                    {{ error }}
-                </li>
-                {% endfor %}
-              {% endfor %}
-              </ul>
-
-              <button type="submit" class="btn btn-primary">Update</button>
-              {% csrf_token %}
-            </form>
+    {% if success %}
+      <div class="alert alert-success" style="margin-top: 5%;">
+        <strong>Success!</strong> Profile updated successfully!
+      </div>
+    {% endif %}
+    <div class="row" style="margin-top: 5%;">
+      <div class="col-lg-4">
+      </div>
+      <div class="col-lg-4">
+        <div class="row" style="border: 1px solid grey; padding: 10%">
+          <form method="POST">
+            <div class="form-group">
+              <label for="{{ form.name.id_for_label }}"><i class="fa fa-user"></i> Name:</label>
+              <input type="text" name="name" class="form-control" id="name" value="{{ form.name.initial }}">
             </div>
-        </div>
-        <div class="col-lg-4">
+            <div class="form-group">
+              <label for="{{ form.email.id_for_label }}"><i class="fa fa-envelope-square"></i> Email:</label>
+              <input type="email" name="email" class="form-control" required="" id="id_email" value="{{ form.email.initial }}">
+            </div>
+            <div class="form-group">
+              <label for="{{ form.address.id_for_label }}"><i class="fa fa-map-marker-alt"></i> Address:</label>
+              <input type="text" name="address" class="form-control" required="" id="id_address" value="{{ form.address.initial }}">
+            </div>
+            <ul>
+            {% for field, errors in form.errors.items %}
+              {% for error in errors %}
+              <li class="text-danger">
+                  {{ error }}
+              </li>
+              {% endfor %}
+            {% endfor %}
+            </ul>
 
+            <button type="submit" class="btn btn-primary">Update</button>
+            {% csrf_token %}
+          </form>
         </div>
+      </div>
+      <div class="col-lg-4">
+
+      </div>
 
     </div>
 

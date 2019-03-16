@@ -39,7 +39,7 @@ def barber_profile(request):
         profile_form = BarberyUpdateProfileForm(request.POST, instance=barber)
         if profile_form.is_valid():
             profile_form.save()
-            # todo : render a success page or a success message
+            return render(request, 'update_profile.html', {'form': profile_form, 'success': True})
         else:
             return render(request, 'update_profile.html', {'form': profile_form})
 
@@ -58,7 +58,7 @@ def add_slot(request):
                                  duration=timedelta(hours=cd['duration_hours'], minutes=cd['duration_minutes']),
                                  add_for_a_week=cd['add_for_a_week'],
                                  barbery=barbery)
-            return render(request, 'add_slots.html', {'form': AddSlotsForm(), 'success':True})
+            return render(request, 'add_slots.html', {'form': AddSlotsForm(), 'success': True})
         else:
             return render(request, 'add_slots.html', {'form': add_slot_form})
     add_slot_form = AddSlotsForm()
