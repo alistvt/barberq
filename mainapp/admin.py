@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import AdminPasswordChangeForm
 from mainapp.models import Barbery, Reservation, TimeSlot, UserProfile
-from mainapp.forms import BarberyCreationForm, ReservationForm
+from mainapp.forms import BarberyCreationForm, ReservationForm, AddSlotsAdmin
 from mainapp.list_filters import SpecialTimesFilter
 # Register your models here.
 
@@ -55,6 +55,13 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 @admin.register(TimeSlot)
 class TimeSlotAdmin(admin.ModelAdmin):
+    add_form = AddSlotsAdmin
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide', ),
+            'fields': ('barbery', 'start_time', 'duration', 'add_for_a_week', ),
+        }),
+    )
     readonly_fields = ('reserved', 'created_date', )
     exclude = ('created_date', )
     fields = ('barbery', ('start_time', 'duration'), 'created_date', 'reserved', )
@@ -63,6 +70,21 @@ class TimeSlotAdmin(admin.ModelAdmin):
     list_filter = (SpecialTimesFilter, 'reserved', )
     ordering = ('-start_time', )
     raw_id_fields = ('barbery', )
+
+    def get_fieldsets(self, request, obj=None):
+        if not obj:
+            return self.add_fieldsets
+        return super(TimeSlotAdmin, self).get_fieldsets(request, obj)
+
+    def get_form(self, request, obj=None, **kwargs):
+        """
+        Use special form during user creation
+        """
+        defaults = {}
+        if obj is None:
+            defaults['form'] = self.add_form
+        defaults.update(kwargs)
+        return super(TimeSlotAdmin, self).get_form(request, obj, **defaults)
 
 
 @admin.register(Reservation)

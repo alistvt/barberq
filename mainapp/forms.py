@@ -8,7 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 from tempus_dominus.widgets import DateTimePicker
 
-from mainapp.models import Reservation, Barbery
+from mainapp.models import Reservation, Barbery, TimeSlot
 
 
 class BarberyCreationForm(UserCreationForm):
@@ -90,6 +90,21 @@ class AddSlotsForm(Form):
         start_time = self.cleaned_data['start_time']
         # if start_time < datetime.now():
         #     raise ValidationError(_('Entered time has passed.'))
+        # todo : why does this give me error?!
+        return self.cleaned_data['start_time']
+
+    def clean(self):
+        pass
+
+
+class AddSlotsAdmin(forms.ModelForm):
+    add_for_a_week = forms.BooleanField(required=False)
+
+    class Meta:
+        model = TimeSlot
+        fields = ['barbery', 'start_time', 'duration']
+
+    def clean_start_time(self):
         return self.cleaned_data['start_time']
 
     def clean(self):
