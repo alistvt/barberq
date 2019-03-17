@@ -97,6 +97,11 @@ class TimeSlot(models.Model):
         else:
             TimeSlot.create_single(start_time, duration, barbery)
 
+    @staticmethod
+    def search_for_barbery(barbery, search_context):
+        # slots = barbery.time_slots.filter()
+        pass
+
 
 class Reservation(models.Model):
     user = models.ForeignKey(UserProfile, related_name='reservations', on_delete=models.CASCADE)
