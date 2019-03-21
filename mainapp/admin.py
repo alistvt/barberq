@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.forms import AdminPasswordChangeForm
 from mainapp.models import Barbery, Reservation, TimeSlot, UserProfile
-from mainapp.forms import BarberyCreationForm, ReservationForm, AddSlotsAdmin
+from mainapp.forms import BarberyCreationForm, ReservationForm, AddSlotsAdminForm
 from mainapp.list_filters import SpecialTimesFilter
 # Register your models here.
 
@@ -55,7 +55,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 @admin.register(TimeSlot)
 class TimeSlotAdmin(admin.ModelAdmin):
-    add_form = AddSlotsAdmin
+    add_form = AddSlotsAdminForm
     add_fieldsets = (
         (None, {
             'classes': ('wide', ),

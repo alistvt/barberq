@@ -104,7 +104,7 @@ class AddSlotsForm(Form):
             raise ValidationError(_('This time slot collides with some of your previous slots.'))
 
 
-class AddSlotsAdmin(forms.ModelForm):
+class AddSlotsAdminForm(forms.ModelForm):
     add_for_a_week = forms.BooleanField(required=False)
 
     class Meta:
