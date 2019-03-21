@@ -112,10 +112,13 @@ class AddSlotsAdminForm(forms.ModelForm):
         fields = ['barbery', 'start_time', 'duration']
 
     def clean_start_time(self):
-        return self.cleaned_data['start_time']
+        cd = self.cleaned_data
+        if cd['start_time'] < timezone.now():
+            raise ValidationError(_('Entered time has passed.'))
+        if not TimeSlot.can_create_bulk(cd['start_time'], cd['duration'], cd['add_for_a_week'], cd['barbery']):
+            raise ValidationError(_('This time slot collides with some of your previous slots.'))
 
-    def clean(self):
-        pass
+        return cd['start_time']
 
 
 class BarberyUpdateProfileForm(forms.ModelForm):
