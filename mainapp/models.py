@@ -85,6 +85,7 @@ class TimeSlot(models.Model):
         if barbery.has_free_time(start_time, duration):
             time_slot = TimeSlot(start_time=start_time, duration=duration, barbery=barbery)
             time_slot.save()
+            return time_slot
         else:
             pass
 
@@ -109,9 +110,10 @@ class TimeSlot(models.Model):
     def create_bulk(start_time, duration, add_for_a_week, barbery):
         if add_for_a_week:
             for i in range(7):
-                TimeSlot.create_single(start_time+timedelta(days=i), duration, barbery)
+                time_slot = TimeSlot.create_single(start_time+timedelta(days=i), duration, barbery)
         else:
-            TimeSlot.create_single(start_time, duration, barbery)
+            time_slot = TimeSlot.create_single(start_time, duration, barbery)
+        return time_slot
 
     @staticmethod
     def search_for_barbery(barbery, search_context):
