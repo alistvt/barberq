@@ -99,8 +99,9 @@ class AddSlotsForm(Form):
 
     def clean(self):
         cd = self.cleaned_data
-        # if not TimeSlot.can_create_bulk(cd['start_time'], cd['duration'], cd['add_for_a_week'], self.barbery):
-        #     raise ValidationError(_('This time slot collids with some of your previous slots.'))
+        self.cleaned_data['duration'] = timedelta(hours=cd['duration_hours'], minutes=cd['duration_minutes'])
+        if not TimeSlot.can_create_bulk(cd['start_time'], cd['duration'], cd['add_for_a_week'], self.barbery):
+            raise ValidationError(_('This time slot collides with some of your previous slots.'))
 
 
 class AddSlotsAdmin(forms.ModelForm):
@@ -142,7 +143,7 @@ class TimeSlotDeleteForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.fields['slots'].queryset = barbery.time_slots.all()
 
-    def save(self, *args, **kwargs):
+    def save(self):
         slots = self.cleaned_data['slots']
         for slot in slots:
             if slot.reserved == False:
