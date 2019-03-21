@@ -71,6 +71,9 @@ class TimeSlotAdmin(admin.ModelAdmin):
     ordering = ('-start_time', )
     raw_id_fields = ('barbery', )
 
+    def save_model(self, request, obj, form, change):
+        form.save()
+
     def get_fieldsets(self, request, obj=None):
         if not obj:
             return self.add_fieldsets
