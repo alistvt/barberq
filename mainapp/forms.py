@@ -111,7 +111,7 @@ class AddSlotsAdmin(forms.ModelForm):
         pass
 
 
-class BarberyUpdateProfileForm(ModelForm):
+class BarberyUpdateProfileForm(forms.ModelForm):
     class Meta:
         model = Barbery
         fields = ['name', 'email', 'address', ]
@@ -127,3 +127,16 @@ class BarberyUpdateProfileForm(ModelForm):
             pass
 
         return self.cleaned_data['email']
+
+
+class TimeSlotDeleteForm(forms.Form):
+    slots = forms.ModelMultipleChoiceField(queryset=None)
+
+    def __init__(self, barbery, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['slots'].queryset = barbery.time_slots.all()
+
+    def save(self, *args, **kwargs):
+        slots = self.cleaned_data['slots']
+        for slot in slots:
+            slot.delete()
