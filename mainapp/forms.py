@@ -130,6 +130,7 @@ class AddSlotsAdminForm(forms.ModelForm):
                              duration=cd['duration'],
                              add_for_a_week=cd['add_for_a_week'],
                              barbery=cd['barbery'])
+        # todo: fix this bug
         # super().save(*args, **kwargs)
 
 
