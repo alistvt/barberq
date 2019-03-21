@@ -1,4 +1,5 @@
 from datetime import date, datetime, timedelta
+from django.utils import timezone
 from django import forms
 from django.forms import ModelForm, ValidationError, Form
 from django.utils.translation import ugettext_lazy as _
@@ -86,15 +87,20 @@ class AddSlotsForm(Form):
     duration_minutes = forms.IntegerField(initial=0)
     add_for_a_week = forms.BooleanField(required=False)
 
+    def __init__(self, barbery, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.barbery = barbery
+
     def clean_start_time(self):
-        start_time = self.cleaned_data['start_time']
-        # if start_time < datetime.now():
-        #     raise ValidationError(_('Entered time has passed.'))
-        # todo : why does this give me error?!
-        return self.cleaned_data['start_time']
+        cd = self.cleaned_data
+        if cd['start_time'] < timezone.now():
+            raise ValidationError(_('Entered time has passed.'))
+        return cd['start_time']
 
     def clean(self):
-        pass
+        cd = self.cleaned_data
+        # if not TimeSlot.can_create_bulk(cd['start_time'], cd['duration'], cd['add_for_a_week'], self.barbery):
+        #     raise ValidationError(_('This time slot collids with some of your previous slots.'))
 
 
 class AddSlotsAdmin(forms.ModelForm):

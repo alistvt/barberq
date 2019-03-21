@@ -51,17 +51,17 @@ def barber_profile(request):
 def add_slot(request):
     barbery = Barbery.objects.get(id=request.user.id)
     if request.POST:
-        add_slot_form = AddSlotsForm(request.POST)
+        add_slot_form = AddSlotsForm(barbery, request.POST)
         if add_slot_form.is_valid():
             cd = add_slot_form.cleaned_data
             TimeSlot.create_bulk(start_time=cd['start_time'],
                                  duration=timedelta(hours=cd['duration_hours'], minutes=cd['duration_minutes']),
                                  add_for_a_week=cd['add_for_a_week'],
                                  barbery=barbery)
-            return render(request, 'add_slots.html', {'form': AddSlotsForm(), 'success': True})
+            return render(request, 'add_slots.html', {'form': AddSlotsForm(barbery), 'success': True})
         else:
             return render(request, 'add_slots.html', {'form': add_slot_form})
-    add_slot_form = AddSlotsForm()
+    add_slot_form = AddSlotsForm(barbery)
     return render(request, 'add_slots.html', {'form': add_slot_form})
 
 
