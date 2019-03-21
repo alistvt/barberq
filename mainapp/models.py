@@ -86,8 +86,24 @@ class TimeSlot(models.Model):
             time_slot = TimeSlot(start_time=start_time, duration=duration, barbery=barbery)
             time_slot.save()
         else:
-            raise ValidationError(_('Barber doesn\'t have free time at this time: %(start_time)s') % \
-                                  {'start_time': start_time.strftime("%d-%b-%Y (%H:%M:%S.%f)")})
+            pass
+
+    @staticmethod
+    def check_create_single(start_time, duration, barbery):
+        if barbery.has_free_time(start_time, duration):
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def can_create_bulk(start_time, duration, add_for_a_week, barbery):
+        if add_for_a_week:
+            for i in range(7):
+                if not TimeSlot.check_create_single(start_time+timedelta(days=i), duration, barbery)
+                    return False
+            return True
+        else:
+            return TimeSlot.check_create_single(start_time, duration, barbery)
 
     @staticmethod
     def create_bulk(start_time, duration, add_for_a_week, barbery):
