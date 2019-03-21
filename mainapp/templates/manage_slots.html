@@ -68,7 +68,36 @@
 </div>
 <div class="row">
   <div class="col-md-8 text-right">
-<button type="submit" class="btn btn-danger"><span class="fa fa-trash"></span> Delete Selecteds</button>
+
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
+  <span class="fa fa-trash"></span> Delete Selecteds
+</button>
+
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Delete?</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body text-left">
+        Are you sure to delete these time slots?
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-dark" >Yes</button>
+        <button type="button" class="btn " data-dismiss="modal">No</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <br>
 <br>
   </div>
