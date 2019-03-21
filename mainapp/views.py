@@ -4,7 +4,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ValidationError
-from .forms import BarberLoginForm, AddSlotsForm, BarberyUpdateProfileForm
+from .forms import BarberLoginForm, AddSlotsForm, BarberyUpdateProfileForm, TimeSlotDeleteForm
 from .models import Barbery, Reservation, TimeSlot
 
 # Create your views here.
@@ -68,6 +68,18 @@ def add_slot(request):
 @login_required
 def manage_slots(request):
     barbery = Barbery.objects.get(username=request.user.username)
+    if request.POST:
+        form = TimeSlotDeleteForm(barbery, request.POST)
+        if form.is_valid():
+            form.save()
+        # print(dict(request.POST)['slots'])
+        # print(request.POST)
+    elif request.GET:
+        if request.GET.get('reserved'):
+            pass
+        if request.GET.get('time'):
+            pass
+
     slots = barbery.time_slots.all().order_by('-start_time')
     return render(request, 'manage_slots.html', {'slots': slots, })
 

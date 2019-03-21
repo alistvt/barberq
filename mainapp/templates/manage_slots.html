@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+{% if success %}
+  <div class="alert alert-success" style="margin-top: 5%;">
+    <strong>Success!</strong> Time Slots deleted successfully!
+  </div>
+{% endif %}
 <form method="post">
   {% csrf_token %}
 <div class="container">
