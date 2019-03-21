@@ -139,4 +139,5 @@ class TimeSlotDeleteForm(forms.Form):
     def save(self, *args, **kwargs):
         slots = self.cleaned_data['slots']
         for slot in slots:
-            slot.delete()
+            if slot.reserved == False:
+                slot.delete()
