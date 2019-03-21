@@ -99,7 +99,7 @@ class TimeSlot(models.Model):
     def can_create_bulk(start_time, duration, add_for_a_week, barbery):
         if add_for_a_week:
             for i in range(7):
-                if not TimeSlot.check_create_single(start_time+timedelta(days=i), duration, barbery)
+                if not TimeSlot.check_create_single(start_time+timedelta(days=i), duration, barbery):
                     return False
             return True
         else:
