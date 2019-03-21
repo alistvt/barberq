@@ -100,7 +100,8 @@ class AddSlotsForm(Form):
     def clean(self):
         cd = self.cleaned_data
         self.cleaned_data['duration'] = timedelta(hours=cd['duration_hours'], minutes=cd['duration_minutes'])
-        if not TimeSlot.can_create_bulk(cd['start_time'], cd['duration'], cd['add_for_a_week'], self.barbery):
+        if cd.get('start_time', None) and \
+                not TimeSlot.can_create_bulk(cd['start_time'], cd['duration'], cd['add_for_a_week'], self.barbery):
             raise ValidationError(_('This time slot collides with some of your previous slots.'))
 
 
@@ -115,10 +116,21 @@ class AddSlotsAdminForm(forms.ModelForm):
         cd = self.cleaned_data
         if cd['start_time'] < timezone.now():
             raise ValidationError(_('Entered time has passed.'))
-        if not TimeSlot.can_create_bulk(cd['start_time'], cd['duration'], cd['add_for_a_week'], cd['barbery']):
+        return cd['start_time']
+
+    def clean(self):
+        cd = self.cleaned_data
+        if cd.get('start_time', None) and \
+                not TimeSlot.can_create_bulk(cd['start_time'], cd['duration'], cd['add_for_a_week'], cd['barbery']):
             raise ValidationError(_('This time slot collides with some of your previous slots.'))
 
-        return cd['start_time']
+    def save(self, *args, **kwargs):
+        cd = self.cleaned_data
+        TimeSlot.create_bulk(start_time=cd['start_time'],
+                             duration=cd['duration'],
+                             add_for_a_week=cd['add_for_a_week'],
+                             barbery=cd['barbery'])
+        # super().save(*args, **kwargs)
 
 
 class BarberyUpdateProfileForm(forms.ModelForm):
