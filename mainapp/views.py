@@ -68,10 +68,12 @@ def add_slot(request):
 @login_required
 def manage_slots(request):
     barbery = Barbery.objects.get(username=request.user.username)
+    success = None
     if request.POST:
         form = TimeSlotDeleteForm(barbery, request.POST)
         if form.is_valid():
             form.save()
+        success = True
         # print(dict(request.POST)['slots'])
         # print(request.POST)
     elif request.GET:
@@ -81,7 +83,7 @@ def manage_slots(request):
             pass
 
     slots = barbery.time_slots.all().order_by('-start_time')
-    return render(request, 'manage_slots.html', {'slots': slots, })
+    return render(request, 'manage_slots.html', {'slots': slots, 'success': success})
 
 
 @login_required
