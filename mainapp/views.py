@@ -68,22 +68,23 @@ def add_slot(request):
 @login_required
 def manage_slots(request):
     barbery = Barbery.objects.get(username=request.user.username)
+    time_slots = barbery.time_slots.all().order_by('-start_time')
     success = None
     if request.POST:
         form = TimeSlotDeleteForm(barbery, request.POST)
         if form.is_valid():
             form.save()
+        time_slots = barbery.time_slots.all().order_by('-start_time')
         success = True
-        # print(dict(request.POST)['slots'])
-        # print(request.POST)
     elif request.GET:
+        if request.GET.get('search', None):
+            time_slots = time_slots.filter(reserved=True, reservation__user__email__icontains=request.GET['search'])
         if request.GET.get('reserved'):
             pass
         if request.GET.get('time'):
             pass
 
-    slots = barbery.time_slots.all().order_by('-start_time')
-    return render(request, 'manage_slots.html', {'slots': slots, 'success': success})
+    return render(request, 'manage_slots.html', {'slots': time_slots, 'success': success})
 
 
 @login_required
