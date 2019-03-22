@@ -49,3 +49,44 @@ class SpecialTimesFilter(admin.SimpleListFilter):
         if self.value() == 'night':
             return queryset.filter(start_time__hour__gte='18',
                                    start_time__hour__lt='24')
+
+
+class FilterOption:
+    def __init__(self, name, value, title, querydict):
+        # name is the name of get variable and value is its value
+        # title is the title that is shown it template
+        self.title = title
+        self.active = False
+
+        self.querydict = self.create_querydict(name, value, querydict)
+        self.url = self.generate_url()
+
+    def create_querydict(self, name, value, querydict):
+        querydict = dict(querydict.iterlists())
+        if name not in querydict:
+            querydict[name] = value
+            self.active = False
+        else:
+            if querydict[name] == value:
+                self.active = True
+            else:
+                querydict[name] = value
+                self.active = False
+        return querydict
+
+    def generate_url(self):
+        url = '?'
+        for name, value in self.querydict.items():
+            url += name+'='+value
+        return url
+
+
+class ReservationFilter:
+    def __init__(self, querydict):
+        self.name = 'reserved'
+        # self.querydict = dict(querydict.iterlists())
+        self.options = {
+            'all': FilterOption(self.name, 'None', _('All'), querydict),
+            'yes': FilterOption(self.name, '1', _('Yes'), querydict),
+            'no': FilterOption(self.name, '0', _('No'), querydict),
+        }
