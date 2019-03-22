@@ -5,22 +5,24 @@
     <strong>Success!</strong> Time Slots deleted successfully!
   </div>
 {% endif %}
-<form method="post">
-  {% csrf_token %}
+
 <div class="container">
 <br/>
+<form method="GET">
   <div class="container text-center">
     <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search">
+      <input type="text" name="search" class="form-control" placeholder="Search for name of customers...">
       <div class="input-group-append">
-        <button class="btn btn-success" type="submit">Go</button>
+          <button class="btn btn-dark" type="submit">Go</button>
       </div>
     </div>
   </div>
+</form>
 <br/>
+<form method="POST">
+  {% csrf_token %}
 <div class="row">
-
-  <div class="col-md-8">
+  <div class="col-md-9">
     {# <h2><i class="fa fa-calendar-alt"></i> Upcoming</h2> #}
   {#  <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>#}
     <table class="table">
@@ -63,12 +65,23 @@
       </tbody>
     </table>
   </div>
-  <div class="col-md-4">
-
+  <div class="col-md-3 ">
+    <div class="jumbotron">
+      <h6><strong>Reserved</strong>
+        <hr>
+        <ul class="list-group">
+          {% for option in filter.options %}
+            <a href="{{option.url}}" class="list-group-item list-group-item-action {% if option.active %} bg-dark text-light {% endif %}">
+              <small>{{option.title}}</small>
+            </a>
+          {% endfor %}
+        </ul>
+    </h6>
+    </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-md-8 text-right">
+  <div class="col-md-9 text-right">
 
 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
   <span class="fa fa-trash"></span> Delete Selecteds
@@ -102,7 +115,7 @@
 <br>
 <br>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
 
   </div>
 
