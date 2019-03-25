@@ -2,10 +2,9 @@ from datetime import datetime, timedelta
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from django.utils.translation import ugettext_lazy as _
-from django.forms import ValidationError
 from .forms import BarberLoginForm, AddSlotsForm, BarberyUpdateProfileForm, TimeSlotDeleteForm
-from .models import Barbery, Reservation, TimeSlot
+from .models import Barbery, TimeSlot
+from .list_filters import ReservationFilter
 
 # Create your views here.
 
@@ -70,21 +69,18 @@ def manage_slots(request):
     barbery = Barbery.objects.get(username=request.user.username)
     time_slots = barbery.time_slots.all().order_by('-start_time')
     success = None
+    filter_data = ReservationFilter(request.GET)
     if request.POST:
         form = TimeSlotDeleteForm(barbery, request.POST)
         if form.is_valid():
             form.save()
         time_slots = barbery.time_slots.all().order_by('-start_time')
         success = True
-    elif request.GET:
+    else:
         if request.GET.get('search', None):
             time_slots = time_slots.filter(reserved=True, reservation__user__email__icontains=request.GET['search'])
-        if request.GET.get('reserved'):
-            pass
-        if request.GET.get('time'):
-            pass
 
-    return render(request, 'manage_slots.html', {'slots': time_slots, 'success': success})
+    return render(request, 'manage_slots.html', {'slots': time_slots, 'success': success, 'filter': filter_data})
 
 
 @login_required

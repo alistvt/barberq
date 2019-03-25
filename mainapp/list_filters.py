@@ -57,28 +57,33 @@ class FilterOption:
         # title is the title that is shown it template
         self.title = title
         self.active = False
-
         self.querydict = self.create_querydict(name, value, querydict)
         self.url = self.generate_url()
 
     def create_querydict(self, name, value, querydict):
-        querydict = dict(querydict.iterlists())
+        querydict = dict(querydict)
         if name not in querydict:
-            querydict[name] = value
+            querydict[name] = [value]
             self.active = False
         else:
-            if querydict[name] == value:
+            if querydict[name][0] == value:
                 self.active = True
             else:
-                querydict[name] = value
+                querydict[name][0] = value
                 self.active = False
         return querydict
 
     def generate_url(self):
         url = '?'
         for name, value in self.querydict.items():
-            url += name+'='+value
+            url += name+'='+value[0]+'&'
         return url
+
+    def __str__(self):
+        return 'FilterOption(title={}, url={}'.format(self.title, self.url)
+
+    def __repr__(self):
+        return self.__str__()
 
 
 class ReservationFilter:
@@ -90,3 +95,7 @@ class ReservationFilter:
             'yes': FilterOption(self.name, '1', _('Yes'), querydict),
             'no': FilterOption(self.name, '0', _('No'), querydict),
         }
+
+    def __str__(self):
+        return 'ReservationFilter(options={}'.format(self.options)
+

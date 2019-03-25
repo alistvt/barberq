@@ -70,8 +70,8 @@
       <h6><strong>Reserved</strong>
         <hr>
         <ul class="list-group">
-          {% for option in filter.options %}
-            <a href="{{option.url}}" class="list-group-item list-group-item-action {% if option.active %} bg-dark text-light {% endif %}">
+          {% for _, option in filter.options.items %}
+            <a href="{{ option.url }}" class="list-group-item list-group-item-action {% if option.active %} bg-dark text-light {% endif %}">
               <small>{{option.title}}</small>
             </a>
           {% endfor %}
