@@ -69,6 +69,7 @@ def manage_slots(request):
     barbery = Barbery.objects.get(username=request.user.username)
     time_slots = barbery.time_slots.all().order_by('-start_time')
     success = None
+    search = ''
     filter_data = ReservationFilter(request.GET)
     if request.POST:
         form = TimeSlotDeleteForm(barbery, request.POST)
@@ -78,10 +79,12 @@ def manage_slots(request):
         success = True
     else:
         if request.GET.get('search', None):
+            search = request.GET['search']
             time_slots = time_slots.filter(reserved=True, reservation__user__email__icontains=request.GET['search'])
         time_slots = filter_data.filter(time_slots)
 
-    return render(request, 'manage_slots.html', {'slots': time_slots, 'success': success, 'filter': filter_data})
+    return render(request, 'manage_slots.html', {'slots': time_slots, 'success': success,
+                                                 'filter': filter_data, 'search': search})
 
 
 @login_required
