@@ -79,6 +79,7 @@ def manage_slots(request):
     else:
         if request.GET.get('search', None):
             time_slots = time_slots.filter(reserved=True, reservation__user__email__icontains=request.GET['search'])
+        time_slots = filter_data.filter(time_slots)
 
     return render(request, 'manage_slots.html', {'slots': time_slots, 'success': success, 'filter': filter_data})
 

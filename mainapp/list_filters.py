@@ -1,4 +1,5 @@
 from datetime import date
+from copy import copy
 
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
@@ -52,16 +53,17 @@ class SpecialTimesFilter(admin.SimpleListFilter):
 
 
 class FilterOption:
-    def __init__(self, name, value, title, querydict):
+    def __init__(self, name, value, title, db_value, querydict):
         # name is the name of get variable and value is its value
         # title is the title that is shown it template
+        self.db_value = db_value
         self.title = title
         self.active = False
         self.querydict = self.create_querydict(name, value, querydict)
         self.url = self.generate_url()
 
     def create_querydict(self, name, value, querydict):
-        querydict = dict(querydict)
+        querydict = dict(copy(querydict))
         if name not in querydict:
             querydict[name] = [value]
             self.active = False
@@ -80,7 +82,7 @@ class FilterOption:
         return url
 
     def __str__(self):
-        return 'FilterOption(title={}, url={}'.format(self.title, self.url)
+        return 'FilterOption(title={}, url={}, active={}'.format(self.title, self.url, self.active)
 
     def __repr__(self):
         return self.__str__()
@@ -91,11 +93,19 @@ class ReservationFilter:
         self.name = 'reserved'
         # self.querydict = dict(querydict.iterlists())
         self.options = {
-            'all': FilterOption(self.name, 'None', _('All'), querydict),
-            'yes': FilterOption(self.name, '1', _('Yes'), querydict),
-            'no': FilterOption(self.name, '0', _('No'), querydict),
+            'all': FilterOption(self.name, 'None', _('All'), None, querydict),
+            'yes': FilterOption(self.name, '1', _('Yes'), True, querydict),
+            'no': FilterOption(self.name, '0', _('No'), False, querydict),
         }
 
     def __str__(self):
         return 'ReservationFilter(options={}'.format(self.options)
 
+    def filter(self, queryset):
+        for option in self.options.values():
+            if option.active:
+                if option.db_value is not None:
+                    return queryset.filter(**{self.name: option.db_value})
+                else:
+                    return queryset
+        return queryset
