@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-25 21:05+0000\n"
+"POT-Creation-Date: 2019-04-01 17:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
+"Plural-Forms: nplurals=1; plural=0;\n"
 #: mainapp/admin.py:16
 msgid "Barbery info"
 msgstr "اطلاعات آرایشگاه"
@@ -27,15 +27,15 @@ msgstr "اطلاعات شخصی"
 
 #: mainapp/forms.py:46
 msgid "This slot is reserved."
-msgstr "این اسلات رزرو شده"
+msgstr "اسلات رزرو شده"
 
 #: mainapp/forms.py:63
 msgid "Barber with these credential doesn't exist!"
-msgstr "آرایشگری با این مشخصات وجود ندارد."
+msgstr "آرایشگر با این مشخصات وجود ندارد."
 
 #: mainapp/forms.py:65
 msgid "Username and password don't match!"
-msgstr "نام کاربری و پسورد همخوانی ندارند."
+msgstr "نام کاربری با پسورد همخوانی ندارند."
 
 #: mainapp/forms.py:97 mainapp/forms.py:118
 msgid "Entered time has passed."
@@ -43,12 +43,12 @@ msgstr "زمان وارد شده گذشته است."
 
 #: mainapp/forms.py:105 mainapp/forms.py:125
 msgid "This time slot collides with some of your previous slots."
-msgstr "زمان وارد شده با یک زمان ساخته شده در قبل برخورد دارد."
+msgstr "این اسلات با بعضی از اسلاتهای تعریف شده از قبل تداخل زمانی دارد."
 
-#: mainapp/forms.py:148
+#: mainapp/forms.py:150
 #, python-format
 msgid "Email \"%(email)s\" has been taken."
-msgstr ""
+msgstr "ایمیل \"%(email)s\" قبلا ثبت شده است."
 
 #: mainapp/list_filters.py:13
 msgid "start time"
@@ -92,11 +92,11 @@ msgstr "آدرس"
 
 #: mainapp/models.py:14 mainapp/models.py:127
 msgid "Creation date"
-msgstr "زمان ساخت"
+msgstr "زمان ثبت"
 
 #: mainapp/models.py:15
 msgid "Slug for url"
-msgstr "اسلاگ"
+msgstr "اسلاگ برای یوارال"
 
 #: mainapp/models.py:42 mainapp/models.py:131
 msgid "Reservations"
@@ -104,7 +104,7 @@ msgstr "رزروها"
 
 #: mainapp/models.py:43
 msgid "Time Slots"
-msgstr "زمان های تعریف شده"
+msgstr "اسلاتها"
 
 #: mainapp/models.py:46
 msgid "Barbery"
@@ -116,15 +116,15 @@ msgstr "آرایشگاه ها"
 
 #: mainapp/models.py:55
 msgid "User profile"
-msgstr "پروفایل کاربری"
+msgstr "پروفایل کاربر"
 
 #: mainapp/models.py:56
 msgid "User profiles"
-msgstr "پروفایل کاربران"
+msgstr "پروفایل های کاربران"
 
 #: mainapp/models.py:70
 msgid "Creation Date"
-msgstr "زمان ساخت"
+msgstr "زمان ثبت"
 
 #: mainapp/models.py:71
 msgid "Start time"
@@ -144,7 +144,7 @@ msgstr "اسلات"
 
 #: mainapp/models.py:77
 msgid "Time slots"
-msgstr "اسلات ها"
+msgstr "اسلاتها"
 
 #: mainapp/models.py:130
 msgid "Reservation"
