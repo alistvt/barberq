@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block content %}
     <div class="row" style="margin-top: 10%;">
         <div class="col-lg-4">
@@ -8,12 +9,12 @@
             <div class="row" style="border: 1px solid grey; padding: 10%">
             <form method="POST">
               <div class="form-group">
-                <label for="{{ form.username.id_for_label }}">Username:</label>
+                <label for="{{ form.username.id_for_label }}">{% trans "Username:" %}</label>
 {#                  {{ form.username }}#}
                 <input type="text" name="username" class="form-control" id="username">
               </div>
               <div class="form-group">
-                <label for="{{ form.password.id_for_label }}">Password:</label>
+                <label for="{{ form.password.id_for_label }}">{% trans "Password:" %}</label>
 {#                  {{ form.password }}#}
                 <input type="password" name="password" class="form-control" required="" id="id_password">
 {#                <input type="password" name="password" class="form-control" id="password">#}
@@ -33,7 +34,7 @@
               {% endfor %}
               </ul>
 
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
               {% csrf_token %}
             </form>
             </div>

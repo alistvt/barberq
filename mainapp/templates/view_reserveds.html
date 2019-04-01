@@ -1,28 +1,29 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
 <div class="container">
 <br/>
 <br/>
 <div class="row">
   <div class="input-group mb-3">
-    <input type="text" class="form-control" placeholder="Search">
+    <input type="text" class="form-control" placeholder="{% trans "Search" %}">
     <div class="input-group-append">
-      <button class="btn btn-success" type="submit">Go</button>
+      <button class="btn btn-success" type="submit">{% trans "Go" %}</button>
     </div>
   </div>
 </div>
 <br>
 <div class="row">
 <div class="col-md-6">
-  <h2><i class="fa fa-calendar-alt"></i> Upcoming</h2>
+  <h2><i class="fa fa-calendar-alt"></i> {% trans "Upcoming" %}</h2>
 {#  <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>#}
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Contact</th>
-        <th>Date</th>
-        <th>Time</th>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Contact" %}</th>
+        <th>{% trans "Date" %}</th>
+        <th>{% trans "Time" %}</th>
       </tr>
     </thead>
     <tbody>
@@ -38,15 +39,15 @@
   </table>
 </div>
 <div class="col-md-6">
-  <h2><i class="fa fa-calendar-check"></i> Passed</h2>
+  <h2><i class="fa fa-calendar-check"></i> {% trans "Passed" %}</h2>
 {#  <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>#}
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Contact</th>
-        <th>Date</th>
-        <th>Time</th>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Contact" %}</th>
+        <th>{% trans "Date" %}</th>
+        <th>{% trans "Time" %}</th>
       </tr>
     </thead>
     <tbody>

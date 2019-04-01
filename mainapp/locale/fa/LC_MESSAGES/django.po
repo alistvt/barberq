@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-01 17:02+0000\n"
+"POT-Creation-Date: 2019-04-01 17:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
 #: mainapp/admin.py:16
 msgid "Barbery info"
 msgstr "اطلاعات آرایشگاه"
@@ -25,9 +26,27 @@ msgstr "اطلاعات آرایشگاه"
 msgid "Personal info"
 msgstr "اطلاعات شخصی"
 
+#: mainapp/forms.py:20
+#, fuzzy
+#| msgid "Barbery's name"
+msgid "Barbery's Name"
+msgstr "نام آرایشگاه"
+
+#: mainapp/forms.py:21 mainapp/models.py:13
+msgid "Address"
+msgstr "آدرس"
+
 #: mainapp/forms.py:46
 msgid "This slot is reserved."
 msgstr "اسلات رزرو شده"
+
+#: mainapp/forms.py:51
+msgid "Username"
+msgstr "نام کاربری"
+
+#: mainapp/forms.py:52
+msgid "Password"
+msgstr "پسورد"
 
 #: mainapp/forms.py:63
 msgid "Barber with these credential doesn't exist!"
@@ -36,6 +55,10 @@ msgstr "آرایشگر با این مشخصات وجود ندارد."
 #: mainapp/forms.py:65
 msgid "Username and password don't match!"
 msgstr "نام کاربری با پسورد همخوانی ندارند."
+
+#: mainapp/forms.py:88 mainapp/forms.py:109
+msgid "Add for a week?"
+msgstr "برای یک هفته اضافه شود."
 
 #: mainapp/forms.py:97 mainapp/forms.py:118
 msgid "Entered time has passed."
@@ -49,6 +72,12 @@ msgstr "این اسلات با بعضی از اسلاتهای تعریف شده 
 #, python-format
 msgid "Email \"%(email)s\" has been taken."
 msgstr "ایمیل \"%(email)s\" قبلا ثبت شده است."
+
+#: mainapp/forms.py:158
+#, fuzzy
+#| msgid "Time Slots"
+msgid "Slots"
+msgstr "اسلاتها"
 
 #: mainapp/list_filters.py:13
 msgid "start time"
@@ -74,11 +103,11 @@ msgstr "شب (۱۸ الی ۲۴)"
 msgid "All"
 msgstr "همه"
 
-#: mainapp/list_filters.py:97
+#: mainapp/list_filters.py:97 mainapp/templates/manage_slots.html:108
 msgid "Yes"
 msgstr "بله"
 
-#: mainapp/list_filters.py:98
+#: mainapp/list_filters.py:98 mainapp/templates/manage_slots.html:109
 msgid "No"
 msgstr "خیر"
 
@@ -86,11 +115,7 @@ msgstr "خیر"
 msgid "Barbery's name"
 msgstr "نام آرایشگاه"
 
-#: mainapp/models.py:13
-msgid "Address"
-msgstr "آدرس"
-
-#: mainapp/models.py:14 mainapp/models.py:127
+#: mainapp/models.py:14 mainapp/models.py:128
 msgid "Creation date"
 msgstr "زمان ثبت"
 
@@ -98,7 +123,7 @@ msgstr "زمان ثبت"
 msgid "Slug for url"
 msgstr "اسلاگ برای یوارال"
 
-#: mainapp/models.py:42 mainapp/models.py:131
+#: mainapp/models.py:42 mainapp/models.py:132
 msgid "Reservations"
 msgstr "رزروها"
 
@@ -122,30 +147,223 @@ msgstr "پروفایل کاربر"
 msgid "User profiles"
 msgstr "پروفایل های کاربران"
 
-#: mainapp/models.py:70
+#: mainapp/models.py:71
 msgid "Creation Date"
 msgstr "زمان ثبت"
 
-#: mainapp/models.py:71
+#: mainapp/models.py:72
 msgid "Start time"
 msgstr "زمان شروع"
 
-#: mainapp/models.py:72
+#: mainapp/models.py:73 mainapp/templates/manage_slots.html:35
 msgid "Duration"
 msgstr "مدت"
 
-#: mainapp/models.py:73
+#: mainapp/models.py:74
 msgid "Is reserved"
 msgstr "وضعیت رزرو"
 
-#: mainapp/models.py:76
+#: mainapp/models.py:77
 msgid "Time slot"
 msgstr "اسلات"
 
-#: mainapp/models.py:77
+#: mainapp/models.py:78
 msgid "Time slots"
 msgstr "اسلاتها"
 
-#: mainapp/models.py:130
+#: mainapp/models.py:131
 msgid "Reservation"
 msgstr "رزرو"
+
+#: mainapp/templates/add_slots.html:21 mainapp/templates/manage_slots.html:6
+#: mainapp/templates/update_profile.html:6
+msgid "Success!"
+msgstr "موفقیت آمیز!"
+
+#: mainapp/templates/add_slots.html:21
+msgid "Slots added successfully!"
+msgstr "اسلاتها با موفقیت اضافه شدند."
+
+#: mainapp/templates/add_slots.html:33
+#, fuzzy
+#| msgid "Start time"
+msgid "Start time:"
+msgstr "زمان شروع"
+
+#: mainapp/templates/add_slots.html:42
+#, fuzzy
+#| msgid "Duration"
+msgid "Duration:"
+msgstr "مدت"
+
+#: mainapp/templates/add_slots.html:47
+msgid "Hours"
+msgstr "ساعت"
+
+#: mainapp/templates/add_slots.html:50
+msgid "Minutes"
+msgstr "دقیقه"
+
+#: mainapp/templates/add_slots.html:57
+#, fuzzy
+#| msgid "Add for a week?"
+msgid "Add slot for a week"
+msgstr "برای یک هفته اضافه شود."
+
+#: mainapp/templates/add_slots.html:71
+msgid "+ Create Slots"
+msgstr "+ ساختن اسلاتها"
+
+#: mainapp/templates/base.html:6 mainapp/templates/header.html:8
+#, fuzzy
+#| msgid "Barbery"
+msgid "BarberQ"
+msgstr "آرایشگاه"
+
+#: mainapp/templates/header.html:12
+#, fuzzy
+#| msgid "Time slots"
+msgid "Add slots"
+msgstr "اسلاتها"
+
+#: mainapp/templates/header.html:15
+#, fuzzy
+#| msgid "Time slots"
+msgid "Manage slots"
+msgstr "اسلاتها"
+
+#: mainapp/templates/header.html:18
+#, fuzzy
+#| msgid "Is reserved"
+msgid "View reserves"
+msgstr "وضعیت رزرو"
+
+#: mainapp/templates/header.html:30
+#, fuzzy
+#| msgid "User profile"
+msgid "Profile"
+msgstr "پروفایل کاربر"
+
+#: mainapp/templates/header.html:31
+msgid "Log out"
+msgstr "خروج"
+
+#: mainapp/templates/header.html:37
+msgid "Login"
+msgstr "ورود"
+
+#: mainapp/templates/login.html:12
+#, fuzzy
+#| msgid "Username"
+msgid "Username:"
+msgstr "نام کاربری"
+
+#: mainapp/templates/login.html:17
+#, fuzzy
+#| msgid "Password"
+msgid "Password:"
+msgstr "پسورد"
+
+#: mainapp/templates/login.html:37
+msgid "Submit"
+msgstr "اعمال"
+
+#: mainapp/templates/manage_slots.html:6
+#, fuzzy
+#| msgid "Slots added successfully!"
+msgid "Time Slots deleted successfully!"
+msgstr "اسلاتها با موفقیت اضافه شدند."
+
+#: mainapp/templates/manage_slots.html:15
+msgid "Search for name of customers..."
+msgstr "جستجو در نام مشتریان ..."
+
+#: mainapp/templates/manage_slots.html:17
+#: mainapp/templates/view_reserveds.html:11
+msgid "Go"
+msgstr "جستجو کن"
+
+#: mainapp/templates/manage_slots.html:32
+msgid "Select"
+msgstr "انتخاب"
+
+#: mainapp/templates/manage_slots.html:33
+#: mainapp/templates/view_reserveds.html:25
+#: mainapp/templates/view_reserveds.html:49
+msgid "Date"
+msgstr "تاریخ"
+
+#: mainapp/templates/manage_slots.html:34
+#: mainapp/templates/view_reserveds.html:26
+#: mainapp/templates/view_reserveds.html:50
+#, fuzzy
+#| msgid "Time slot"
+msgid "Time"
+msgstr "اسلات"
+
+#: mainapp/templates/manage_slots.html:36
+#: mainapp/templates/manage_slots.html:71
+#, fuzzy
+#| msgid "Is reserved"
+msgid "Reserved"
+msgstr "وضعیت رزرو"
+
+#: mainapp/templates/manage_slots.html:88
+msgid "Delete Selecteds"
+msgstr "حذف انتخاب شده ها"
+
+#: mainapp/templates/manage_slots.html:97
+msgid "Delete?"
+msgstr "حذف؟"
+
+#: mainapp/templates/manage_slots.html:103
+msgid "Are you sure to delete these time slots?"
+msgstr "آیا از حذف اسلات های انتخاب شده مطمئنید؟"
+
+#: mainapp/templates/update_profile.html:6
+#, fuzzy
+#| msgid "Slots added successfully!"
+msgid "Profile updated successfully!"
+msgstr "اسلاتها با موفقیت اضافه شدند."
+
+#: mainapp/templates/update_profile.html:16
+msgid "Name:"
+msgstr "نام:"
+
+#: mainapp/templates/update_profile.html:20
+msgid "Email:"
+msgstr "ایمیل:"
+
+#: mainapp/templates/update_profile.html:24
+#, fuzzy
+#| msgid "Address"
+msgid "Address:"
+msgstr "آدرس:"
+
+#: mainapp/templates/update_profile.html:37
+msgid "Update"
+msgstr "به روز رسانی"
+
+#: mainapp/templates/view_reserveds.html:9
+msgid "Search"
+msgstr "جستجو"
+
+#: mainapp/templates/view_reserveds.html:18
+msgid "Upcoming"
+msgstr "در انتظار"
+
+#: mainapp/templates/view_reserveds.html:23
+#: mainapp/templates/view_reserveds.html:47
+msgid "Name"
+msgstr "نام"
+
+#: mainapp/templates/view_reserveds.html:24
+#: mainapp/templates/view_reserveds.html:48
+msgid "Contact"
+msgstr "تماس"
+
+#: mainapp/templates/view_reserveds.html:42
+#, fuzzy
+#| msgid "Password"
+msgid "Passed"
+msgstr "پسورد"

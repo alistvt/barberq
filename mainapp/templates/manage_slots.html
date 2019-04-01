@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
 {% if success %}
   <div class="alert alert-success" style="margin-top: 5%;">
-    <strong>Success!</strong> Time Slots deleted successfully!
+    <strong>{% trans "Success!" %}</strong> {% trans "Time Slots deleted successfully!" %}
   </div>
 {% endif %}
 
@@ -11,9 +12,9 @@
 <form method="GET">
   <div class="container text-center">
     <div class="input-group mb-3">
-      <input type="text" name="search" class="form-control" value="{{search}}" placeholder="Search for name of customers...">
+      <input type="text" name="search" class="form-control" value="{{search}}" placeholder="{% trans "Search for name of customers..." %}">
       <div class="input-group-append">
-          <button class="btn btn-dark" type="submit">Go</button>
+          <button class="btn btn-dark" type="submit">{% trans "Go" %}</button>
       </div>
     </div>
   </div>
@@ -28,11 +29,11 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Select</th>
-          <th>Date</th>
-          <th>Time</th>
-          <th>Duration</th>
-          <th>Reserved</th>
+          <th>{% trans "Select" %}</th>
+          <th>{% trans "Date" %}</th>
+          <th>{% trans "Time" %}</th>
+          <th>{% trans "Duration" %}</th>
+          <th>{% trans "Reserved" %}</th>
         </tr>
       </thead>
       <tbody>
@@ -67,7 +68,7 @@
   </div>
   <div class="col-md-3 ">
     <div class="jumbotron">
-      <h6><strong>Reserved</strong>
+      <h6><strong>{% trans "Reserved" %}</strong>
         <hr>
         <ul class="list-group">
           {% for _, option in filter.options.items %}
@@ -84,7 +85,7 @@
   <div class="col-md-9 text-right">
 
 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">
-  <span class="fa fa-trash"></span> Delete Selecteds
+  <span class="fa fa-trash"></span> {% trans "Delete Selecteds" %}
 </button>
 
 <div class="modal fade" id="myModal">
@@ -93,19 +94,19 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Delete?</h4>
+        <h4 class="modal-title">{% trans "Delete?" %}</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body text-left">
-        Are you sure to delete these time slots?
+        {% trans "Are you sure to delete these time slots?" %}
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="submit" class="btn btn-dark" >Yes</button>
-        <button type="button" class="btn " data-dismiss="modal">No</button>
+        <button type="submit" class="btn btn-dark" >{% trans "Yes" %}</button>
+        <button type="button" class="btn " data-dismiss="modal">{% trans "No" %}</button>
       </div>
 
     </div>

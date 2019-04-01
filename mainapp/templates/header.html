@@ -1,20 +1,21 @@
+{% load i18n %}
 {% load staticfiles %}
     <nav class="navbar navbar-expand-sm bg-light navbar-light">
 
         <div class="container">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="navbar-brand" href="#"><i class="fa fa-cut"></i> BarberQ</a>
+              <a class="navbar-brand" href="#"><i class="fa fa-cut"></i> {% trans "BarberQ" %}</a>
             </li>
               {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'mainapp:add_slot' %}"><i class="fa fa-plus"></i> Add slots</a>
+              <a class="nav-link" href="{% url 'mainapp:add_slot' %}"><i class="fa fa-plus"></i> {% trans "Add slots" %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'mainapp:manage_slots' %}"><i class="fa fa-tasks"></i> Manage slots</a>
+              <a class="nav-link" href="{% url 'mainapp:manage_slots' %}"><i class="fa fa-tasks"></i> {% trans "Manage slots" %}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'mainapp:view_reserves' %}"><i class="fa fa-eye"></i> View reserves</a>
+              <a class="nav-link" href="{% url 'mainapp:view_reserves' %}"><i class="fa fa-eye"></i> {% trans "View reserves" %}</a>
             </li>
               {% endif %}
           </ul>
@@ -26,14 +27,14 @@
                    <i class="fa fa-user-circle"></i>
                 </button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{% url 'mainapp:barber_profile' %}"><i class="fa fa-address-card"></i> Profile</a>
-                  <a class="dropdown-item" href="{% url 'mainapp:barber_logout' %}"><i class="fa fa-sign-out-alt"></i> Log out</a>
+                  <a class="dropdown-item" href="{% url 'mainapp:barber_profile' %}"><i class="fa fa-address-card"></i> {% trans "Profile" %}</a>
+                  <a class="dropdown-item" href="{% url 'mainapp:barber_logout' %}"><i class="fa fa-sign-out-alt"></i> {% trans "Log out" %}</a>
                 </div>
               </div>
             </li>
             {% else %}
             <li class="nav-item active">
-              <a class="nav-link" href="{% url 'mainapp:barber_login' %}"><i class="fa fa-user-circle"></i> Login </a>
+              <a class="nav-link" href="{% url 'mainapp:barber_login' %}"><i class="fa fa-user-circle"></i> {% trans "Login" %} </a>
             </li>
             {% endif %}
             <!--<li class="nav-item">-->

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load i18n %}
 {% block headcdn %}
     {# Include FontAwesome; required for icon display #}
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
@@ -17,7 +18,7 @@
     <br>
     {% if success %}
     <div class="alert alert-success">
-      <strong>Success!</strong> Slots added successfully!
+      <strong>{% trans "Success!" %}</strong>{% trans "Slots added successfully!" %}
     </div>
     {% endif %}
     <br>
@@ -29,7 +30,7 @@
             <form method="POST">
               <div class="form-row">
                 <div class="col">
-                  <label for="{{ form.start_time.id_for_label }}"><i class="fa fa-calendar-alt"></i> Start time:</label>
+                  <label for="{{ form.start_time.id_for_label }}"><i class="fa fa-calendar-alt"></i> {% trans "Start time:" %}</label>
                   {#<input type="text" name="start_time" required="True" id="id_start_time" class="form-control  datetimepicker-input" data-toggle="datetimepicker" data-target="#id_start_time">#}
                   {#<input type="text" name="start_time" required="True" id="id_start_time" class="form-control  datetimepicker-input" data-toggle="datetimepicker" data-target="#id_start_time">#}
                   {{ form.start_time }}
@@ -38,22 +39,22 @@
               <br>
               <div class="form-row">
                 <div class="col">
-                  <label><i class="fa fa-clock"></i> Duration:</label>
+                  <label><i class="fa fa-clock"></i> {% trans "Duration:" %}</label>
                 </div>
               </div>
               <div class="form-row">
                 <div class="col">
-                  <input type="duration" name="duration_hours" class="form-control" required="" id="id_duration_hours" value="{{ form.duration_hours.initial }}" placeholder="Hours">
+                  <input type="duration" name="duration_hours" class="form-control" required="" id="id_duration_hours" value="{{ form.duration_hours.initial }}" placeholder="{% trans "Hours" %}">
                 </div>
                 <div class="col">
-                  <input type="duration" name="duration_minutes" class="form-control" required="" id="id_duration_minutes" value="{{ form.duration_minutes.initial }}" placeholder="Minutes">
+                  <input type="duration" name="duration_minutes" class="form-control" required="" id="id_duration_minutes" value="{{ form.duration_minutes.initial }}" placeholder="{% trans "Minutes" %}">
                 </div>
               </div>
               <br>
               <div class="form-row form-check">
                 <div class="col">
                 <label class="form-check-label">
-                  <input class="form-check-input" type="checkbox" name="add_for_a_week"> Add slot for a week
+                  <input class="form-check-input" type="checkbox" name="add_for_a_week"> {% trans "Add slot for a week" %}
                 </label>
                 </div>
               </div>
@@ -67,7 +68,7 @@
               {% endfor %}
               </ul>
 
-              <button type="submit" class="btn btn-dark">+ Create Slots</button>
+              <button type="submit" class="btn btn-dark">{% trans "+ Create Slots" %}</button>
               {% csrf_token %}
             </form>
             </div>

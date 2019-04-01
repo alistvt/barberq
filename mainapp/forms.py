@@ -17,8 +17,8 @@ class BarberyCreationForm(UserCreationForm):
     A form that creates a user, with no privileges, from the given username and
     password.
     """
-    name = forms.CharField(max_length=100, required=True)
-    address = forms.CharField(max_length=1000)
+    name = forms.CharField(max_length=100, required=True, label=_('Barbery\'s Name'))
+    address = forms.CharField(max_length=1000, label=_('Address'))
 
     class Meta:
         model = Barbery
@@ -48,8 +48,8 @@ class ReservationForm(ModelForm):
 
 
 class BarberLoginForm(Form):
-    username = forms.CharField(max_length=100)
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(max_length=100, label=_('Username'))
+    password = forms.CharField(widget=forms.PasswordInput(), label=_('Password'))
 
     def clean(self):
         username = self.cleaned_data['username']
@@ -85,7 +85,7 @@ class AddSlotsForm(Form):
     )
     duration_hours = forms.IntegerField(initial=1)
     duration_minutes = forms.IntegerField(initial=0)
-    add_for_a_week = forms.BooleanField(required=False)
+    add_for_a_week = forms.BooleanField(required=False, label=_('Add for a week?'))
 
     def __init__(self, barbery, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -106,7 +106,7 @@ class AddSlotsForm(Form):
 
 
 class AddSlotsAdminForm(forms.ModelForm):
-    add_for_a_week = forms.BooleanField(required=False)
+    add_for_a_week = forms.BooleanField(required=False, label=_('Add for a week?'))
 
     class Meta:
         model = TimeSlot
@@ -155,7 +155,7 @@ class BarberyUpdateProfileForm(forms.ModelForm):
 
 
 class TimeSlotDeleteForm(forms.Form):
-    slots = forms.ModelMultipleChoiceField(queryset=None)
+    slots = forms.ModelMultipleChoiceField(queryset=None, label=_('Slots'))
 
     def __init__(self, barbery, *args, **kwargs):
         super().__init__(*args, **kwargs)
