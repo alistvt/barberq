@@ -131,7 +131,9 @@ class AddSlotsAdminForm(forms.ModelForm):
                              add_for_a_week=cd['add_for_a_week'],
                              barbery=cd['barbery'])
         # todo: fix this bug
-        # super().save(*args, **kwargs)
+
+        kwargs.pop('commit', False)
+        return super().save(commit=False, *args, **kwargs)
 
 
 class BarberyUpdateProfileForm(forms.ModelForm):
