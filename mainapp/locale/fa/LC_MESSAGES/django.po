@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-01 17:56+0000\n"
+"POT-Creation-Date: 2019-04-03 16:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -214,7 +214,7 @@ msgstr "برای یک هفته اضافه شود."
 msgid "+ Create Slots"
 msgstr "+ ساختن اسلاتها"
 
-#: mainapp/templates/base.html:6 mainapp/templates/header.html:8
+#: mainapp/templates/base.html:7 mainapp/templates/header.html:8
 #, fuzzy
 #| msgid "Barbery"
 msgid "BarberQ"
@@ -224,19 +224,19 @@ msgstr "آرایشگاه"
 #, fuzzy
 #| msgid "Time slots"
 msgid "Add slots"
-msgstr "اسلاتها"
+msgstr "ساختن اسلات"
 
 #: mainapp/templates/header.html:15
 #, fuzzy
 #| msgid "Time slots"
 msgid "Manage slots"
-msgstr "اسلاتها"
+msgstr "مدیریت اسلاتها"
 
 #: mainapp/templates/header.html:18
 #, fuzzy
 #| msgid "Is reserved"
 msgid "View reserves"
-msgstr "وضعیت رزرو"
+msgstr "مشاهده رزروها"
 
 #: mainapp/templates/header.html:30
 #, fuzzy
@@ -272,7 +272,7 @@ msgstr "اعمال"
 #, fuzzy
 #| msgid "Slots added successfully!"
 msgid "Time Slots deleted successfully!"
-msgstr "اسلاتها با موفقیت اضافه شدند."
+msgstr "اسلاتها با موفقیت حذف شدند."
 
 #: mainapp/templates/manage_slots.html:15
 msgid "Search for name of customers..."
@@ -299,7 +299,7 @@ msgstr "تاریخ"
 #, fuzzy
 #| msgid "Time slot"
 msgid "Time"
-msgstr "اسلات"
+msgstr "ساعت"
 
 #: mainapp/templates/manage_slots.html:36
 #: mainapp/templates/manage_slots.html:71
@@ -324,7 +324,7 @@ msgstr "آیا از حذف اسلات های انتخاب شده مطمئنید�
 #, fuzzy
 #| msgid "Slots added successfully!"
 msgid "Profile updated successfully!"
-msgstr "اسلاتها با موفقیت اضافه شدند."
+msgstr "پروفایل با موفقیت آپدیت شد."
 
 #: mainapp/templates/update_profile.html:16
 msgid "Name:"
@@ -366,4 +366,7 @@ msgstr "تماس"
 #, fuzzy
 #| msgid "Password"
 msgid "Passed"
-msgstr "پسورد"
+msgstr "رد شده"
+
+#~ msgid "ltr"
+#~ msgstr "rtl"
