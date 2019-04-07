@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tempus_dominus',
     'mainapp',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
