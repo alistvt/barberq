@@ -27,8 +27,6 @@ msgid "Personal info"
 msgstr "اطلاعات شخصی"
 
 #: mainapp/forms.py:20
-#, fuzzy
-#| msgid "Barbery's name"
 msgid "Barbery's Name"
 msgstr "نام آرایشگاه"
 
@@ -74,8 +72,6 @@ msgid "Email \"%(email)s\" has been taken."
 msgstr "ایمیل \"%(email)s\" قبلا ثبت شده است."
 
 #: mainapp/forms.py:158
-#, fuzzy
-#| msgid "Time Slots"
 msgid "Slots"
 msgstr "اسلاتها"
 
@@ -259,8 +255,6 @@ msgid "Username:"
 msgstr "نام کاربری"
 
 #: mainapp/templates/login.html:17
-#, fuzzy
-#| msgid "Password"
 msgid "Password:"
 msgstr "پسورد"
 
@@ -269,8 +263,6 @@ msgid "Submit"
 msgstr "اعمال"
 
 #: mainapp/templates/manage_slots.html:6
-#, fuzzy
-#| msgid "Slots added successfully!"
 msgid "Time Slots deleted successfully!"
 msgstr "اسلاتها با موفقیت حذف شدند."
 
@@ -296,15 +288,11 @@ msgstr "تاریخ"
 #: mainapp/templates/manage_slots.html:34
 #: mainapp/templates/view_reserveds.html:26
 #: mainapp/templates/view_reserveds.html:50
-#, fuzzy
-#| msgid "Time slot"
 msgid "Time"
 msgstr "ساعت"
 
 #: mainapp/templates/manage_slots.html:36
 #: mainapp/templates/manage_slots.html:71
-#, fuzzy
-#| msgid "Is reserved"
 msgid "Reserved"
 msgstr "وضعیت رزرو"
 
@@ -363,10 +351,5 @@ msgid "Contact"
 msgstr "تماس"
 
 #: mainapp/templates/view_reserveds.html:42
-#, fuzzy
-#| msgid "Password"
 msgid "Passed"
 msgstr "رد شده"
-
-#~ msgid "ltr"
-#~ msgstr "rtl"
