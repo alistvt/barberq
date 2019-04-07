@@ -1,13 +1,20 @@
+{% load staticfiles %}
 {% load i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE }}" dir="ltr">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>{% trans "BarberQ" %}</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    {% if LANGUAGE_CODE %}
+    <!-- rtl bootstrap -->
+    <script rel="stylesheet" href="{% static 'bootstrap-rtl.css' %}"></script>
+    <script rel="stylesheet" href="{% static 'bootstrap-rtl.min.css' %}"></script>
+    {% endif %}
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
