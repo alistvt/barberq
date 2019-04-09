@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-03 16:22+0000\n"
+"POT-Creation-Date: 2019-04-08 14:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,10 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: BarberQ/settings.py:109
+#: BarberQ/settings.py:110
 msgid "English"
 msgstr ""
 
-#: BarberQ/settings.py:110
+#: BarberQ/settings.py:111
 msgid "Persian"
 msgstr ""

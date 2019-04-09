@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-03 16:22+0000\n"
+"POT-Creation-Date: 2019-04-08 14:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -210,7 +210,7 @@ msgstr "برای یک هفته اضافه شود."
 msgid "+ Create Slots"
 msgstr "+ ساختن اسلاتها"
 
-#: mainapp/templates/base.html:7 mainapp/templates/header.html:8
+#: mainapp/templates/base.html:8 mainapp/templates/header.html:8
 #, fuzzy
 #| msgid "Barbery"
 msgid "BarberQ"
@@ -244,23 +244,19 @@ msgstr "پروفایل کاربر"
 msgid "Log out"
 msgstr "خروج"
 
-#: mainapp/templates/header.html:37
+#: mainapp/templates/header.html:37 mainapp/templates/login.html:38
 msgid "Login"
 msgstr "ورود"
 
-#: mainapp/templates/login.html:12
+#: mainapp/templates/login.html:13
 #, fuzzy
 #| msgid "Username"
 msgid "Username:"
 msgstr "نام کاربری"
 
-#: mainapp/templates/login.html:17
+#: mainapp/templates/login.html:18
 msgid "Password:"
 msgstr "پسورد"
-
-#: mainapp/templates/login.html:37
-msgid "Submit"
-msgstr "اعمال"
 
 #: mainapp/templates/manage_slots.html:6
 msgid "Time Slots deleted successfully!"
@@ -353,3 +349,6 @@ msgstr "تماس"
 #: mainapp/templates/view_reserveds.html:42
 msgid "Passed"
 msgstr "رد شده"
+
+#~ msgid "Submit"
+#~ msgstr "اعمال"
