@@ -38,6 +38,7 @@ def barber_profile(request):
         profile_form = BarberyUpdateProfileForm(request.POST, instance=barber)
         if profile_form.is_valid():
             profile_form.save()
+            profile_form = BarberyUpdateProfileForm(instance=barber)
             return render(request, 'update_profile.html', {'form': profile_form, 'success': True})
         else:
             return render(request, 'update_profile.html', {'form': profile_form})
