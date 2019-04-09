@@ -1,3 +1,7 @@
 Django==1.11
+django-tempus-dominus==5.1.2.2
+djangorestframework==3.9.2
+djangorestframework-stubs==0.4.2
+isort==4.3.8
 pkg-resources==0.0.0
 pytz==2018.9
