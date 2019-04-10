@@ -5,16 +5,16 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>{% trans "BarberQ" %}</title>
+    <title>{% trans "BarberQ" %} {{ LANGUAGE_CODE }}</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-    {% if LANGUAGE_CODE %}
+    {% ifequal LANGUAGE_CODE 'fa' %}
     <!-- rtl bootstrap -->
-    <script rel="stylesheet" href="{% static 'bootstrap-rtl.css' %}"></script>
-    <script rel="stylesheet" href="{% static 'bootstrap-rtl.min.css' %}"></script>
-    {% endif %}
+        <script rel="stylesheet" href="{% static 'bootstrap-rtl.css' %}"></script>
+        <script rel="stylesheet" href="{% static 'bootstrap-rtl.min.css' %}"></script>
+    {% endifequal %}
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
