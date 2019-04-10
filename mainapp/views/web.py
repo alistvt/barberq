@@ -2,9 +2,9 @@ from datetime import datetime, timedelta
 from django.shortcuts import redirect, render
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import BarberLoginForm, AddSlotsForm, BarberyUpdateProfileForm, TimeSlotDeleteForm
-from .models import Barbery, TimeSlot
-from .list_filters import ReservationFilter
+from mainapp.forms import BarberLoginForm, AddSlotsForm, BarberyUpdateProfileForm, TimeSlotDeleteForm
+from mainapp.models import Barbery, TimeSlot
+from mainapp.list_filters import ReservationFilter
 
 # Create your views here.
 
