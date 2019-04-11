@@ -1,4 +1,4 @@
-Django==1.11
+Django==1.11.6
 django-tempus-dominus==5.1.2.2
 djangorestframework==3.9.2
 djangorestframework-stubs==0.4.2

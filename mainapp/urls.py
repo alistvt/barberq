@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from mainapp import views
+from mainapp.views import api
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
@@ -9,4 +10,8 @@ urlpatterns = [
     url(r'^reserves/$', views.view_reserves, name='view_reserves'),
     url(r'^addslot/$', views.add_slot, name='add_slot'),
     url(r'^manageslots/$', views.manage_slots, name='manage_slots'),
+
+    url(r'^api/barbers/list/$', api.BarberyListView.as_view(), name='barber_list'),
+
 ]
+
