@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^barbers/manageslots/$', views.manage_slots, name='manage_slots'),
 
     url(r'^api/barbers/list/$', api.BarberyListView.as_view(), name='barber_list'),
-    url(r'^api/barbers/profile/$', api.BarberyListView.as_view(), name='barber_list'),
+    url(r'^api/barbers/profile/(?P<pk>\d+)/$', api.BarberyProfileView.as_view(), name='barber_profile'),
+    url(r'^api/barbers/timeslots/(?P<pk>\d+)/$', api.BarberyTimeSlotsListView.as_view(), name='barber_timeslots'),
 
 ]
