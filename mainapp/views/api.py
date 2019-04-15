@@ -1,6 +1,9 @@
 from rest_framework import generics
-from mainapp.models import Barbery
-from mainapp.serializers import BarberyListSerializer, BarberyTimeSlotListSerializer
+from rest_framework.permissions import IsAuthenticated
+from mainapp.models import Barbery, UserProfile
+from mainapp.serializers import (BarberyListSerializer, BarberyTimeSlotListSerializer,
+                                 UserProfileSerializer)
+from mainapp.permissions import IsOwner
 
 
 class BarberyListView(generics.ListAPIView):
@@ -20,3 +23,15 @@ class BarberyTimeSlotsListView(generics.RetrieveAPIView):
     queryset = Barbery.objects.all()
     serializer_class = BarberyTimeSlotListSerializer
     permission_classes = []
+
+
+class UserSignUpView(generics.CreateAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+
+
+class UserActionsView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = UserProfile.objects.all()
+    serializer_class = UserProfileSerializer
+    permission_classes = (IsAuthenticated, IsOwner, )
+

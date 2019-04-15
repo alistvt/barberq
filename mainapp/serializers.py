@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Barbery, TimeSlot
+from .models import Barbery, TimeSlot, UserProfile
 
 
 class BarberyListSerializer(serializers.ModelSerializer):
@@ -20,3 +20,9 @@ class BarberyTimeSlotListSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeSlot
         fields = ('time_slots', )
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ('username', 'email', 'first_name', 'last_name', 'password', )

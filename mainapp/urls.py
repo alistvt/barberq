@@ -15,4 +15,8 @@ urlpatterns = [
     url(r'^api/barbers/profile/(?P<pk>\d+)/$', api.BarberyProfileView.as_view(), name='barber_profile'),
     url(r'^api/barbers/timeslots/(?P<pk>\d+)/$', api.BarberyTimeSlotsListView.as_view(), name='barber_timeslots'),
 
+    url(r'^api/user/signup/$', api.UserSignUpView.as_view(), name='user_signup'),
+    url(r'^api/user/$', api.UserActionsView.as_view(), name='user_actions'),
+    url(r'^api/user/reservations/$', api.UserReservationsView.as_view(), name='user_reservations'),
+
 ]
