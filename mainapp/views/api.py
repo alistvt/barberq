@@ -38,6 +38,7 @@ class UserActionsView(generics.RetrieveUpdateDestroyAPIView):
 
 class UserReservationsView(generics.ListAPIView):
     serializer_class = ReservationSerializer
+    permission_classes = (IsAuthenticated, )
 
     def get_queryset(self):
         user = self.request.user
