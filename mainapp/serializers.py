@@ -42,6 +42,23 @@ class UserSignUpSerializer(serializers.ModelSerializer):
         # user = user_serializer.object
 
 
+class UserPasswordSerializer(serializers.Serializer):
+    password = serializers.CharField(max_length=200)
+    # password2 = serializers.CharField(max_length=200)
+
+    def validate(self, data):
+        # if data['password'] != data['password2']:
+        #     raise serializers.ValidationError("passwords doesn't match.")
+        # data.pop('password2')
+        return data
+
+    def update(self, instance, validated_data):
+        # password =
+        instance.set_password(validated_data['password'])
+        instance.save()
+        return instance
+
+
 class BarberyTimeSlotReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Barbery
