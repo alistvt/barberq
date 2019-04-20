@@ -32,9 +32,13 @@ class UserSignUpView(generics.CreateAPIView):
 
 
 class UserActionsView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
-    permission_classes = (IsAuthenticated, IsOwner, )
+    permission_classes = (IsAuthenticated, )
+
+    def get_object(self):
+        user = self.request.user
+        user_profile = UserProfile.objects.get(pk=user.pk)
+        return user_profile
 
 
 class UserReservationsView(generics.ListAPIView):

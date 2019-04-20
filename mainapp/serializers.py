@@ -25,7 +25,7 @@ class BarberyTimeSlotListSerializer(serializers.ModelSerializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
-        fields = ('username', 'email', 'first_name', 'last_name', 'password', )
+        fields = ('username', 'email', 'first_name', 'last_name', )
 
 
 class UserSignUpSerializer(serializers.ModelSerializer):
