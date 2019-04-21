@@ -97,4 +97,4 @@ class UserReserveTimeSlotSerializer(serializers.ModelSerializer):
 class UserCancelReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
-        fields = ('slot', 'user', )
+        fields = ()
