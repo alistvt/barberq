@@ -134,6 +134,15 @@ class Reservation(models.Model):
     def __str__(self):
         return '{user}-{slot}'.format(user=self.user, slot=self.slot)
 
+    def can_cancel(self):
+        if datetime.now() > self.slot.start_time:
+            return False
+        return True
+
+    def cancel(self):
+        self.slot.reserved = False
+        self.slot.save()
+
     def save(self, *args, **kwargs):
         self.slot.reserved = True
         self.slot.save()
