@@ -86,9 +86,6 @@ class UserReserveTimeSlotSerializer(serializers.ModelSerializer):
         model = Reservation
         fields = ('slot', 'user', )
 
-    def create(self, validated_data):
-        pass
-
 
 class UserCancelReservationSerializer(serializers.ModelSerializer):
     class Meta:
