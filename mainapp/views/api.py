@@ -1,10 +1,11 @@
-from rest_framework import generics
+from rest_framework import generics, serializers
 from rest_framework.permissions import IsAuthenticated
-from mainapp.models import Barbery, UserProfile
+from mainapp.models import Barbery, UserProfile, TimeSlot
 from mainapp.serializers import (BarberyListSerializer, BarberyTimeSlotListSerializer,
                                  UserProfileSerializer, UserSignUpSerializer, ReservationSerializer,
-                                 UserPasswordSerializer)
-from mainapp.permissions import IsOwner
+                                 UserPasswordSerializer, UserReserveTimeSlotSerializer,
+                                 UserCancelReservationSerializer,)
+from mainapp.permissions import IsOwnerOfReservation
 
 
 class BarberyListView(generics.ListAPIView):
@@ -59,3 +60,11 @@ class UserChangePasswordView(generics.UpdateAPIView):
         user = self.request.user
         user_profile = UserProfile.objects.get(pk=user.pk)
         return user_profile
+
+
+class UserReserveTimeSlotView(generics.CreateAPIView):
+    serializer_class = UserReserveTimeSlotSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

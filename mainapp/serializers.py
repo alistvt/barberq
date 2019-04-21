@@ -79,3 +79,18 @@ class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
         fields = ('slot', )
+
+
+class UserReserveTimeSlotSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reservation
+        fields = ('slot', 'user', )
+
+    def create(self, validated_data):
+        pass
+
+
+class UserCancelReservationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reservation
+        fields = ('slot', 'user', )
