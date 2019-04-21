@@ -68,3 +68,15 @@ class UserReserveTimeSlotView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class UserCancelReservationView(generics.DestroyAPIView):
+    serializer_class = UserCancelReservationSerializer
+    permission_classes = (IsAuthenticated, IsOwnerOfReservation, )
+
+    def perform_destroy(self, instance):
+        # TODO : Logic on serializers?
+        if not instance.can_cancel():
+            raise serializers.ValidationError("time has passed and can't be cancelled.")
+        instance.cancel()
+        return super().perform_destroy(instance)
