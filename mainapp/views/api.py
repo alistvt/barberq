@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from rest_framework import generics, serializers
 from rest_framework.permissions import IsAuthenticated
 from mainapp.models import Barbery, UserProfile, TimeSlot, Reservation
@@ -49,7 +51,14 @@ class UserReservationsView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         user_profile = UserProfile.objects.get(pk=user.pk)
-        return user_profile.reservations
+        # TODO: Is this true?
+        passed = self.request.query_params.get('passed', None)
+        if passed is None:
+            return user_profile.reservations
+        elif passed == '0':
+            return user_profile.reservations.filter(slot__start_time__gt=datetime.now())
+        elif passed == '1':
+            return user_profile.reservations.filter(slot__start_time__lte=datetime.now())
 
 
 class UserChangePasswordView(generics.UpdateAPIView):

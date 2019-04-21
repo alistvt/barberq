@@ -92,9 +92,3 @@ class UserReserveTimeSlotSerializer(serializers.ModelSerializer):
         user = validated_data['user']
         user_profile = UserProfile.objects.get(pk=user.pk)
         return instance.reserve(user_profile)
-
-
-class UserCancelReservationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Reservation
-        fields = ()
