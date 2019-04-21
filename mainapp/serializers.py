@@ -83,8 +83,15 @@ class ReservationSerializer(serializers.ModelSerializer):
 
 class UserReserveTimeSlotSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Reservation
-        fields = ('slot', 'user', )
+        model = TimeSlot
+        fields = ()
+
+    def update(self, instance, validated_data):
+        if not instance.can_be_reserved():
+            raise serializers.ValidationError("This slot is reserved.")
+        user = validated_data['user']
+        user_profile = UserProfile.objects.get(pk=user.pk)
+        return instance.reserve(user_profile)
 
 
 class UserCancelReservationSerializer(serializers.ModelSerializer):

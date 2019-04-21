@@ -80,6 +80,15 @@ class TimeSlot(models.Model):
     def __str__(self):
         return '{barbery}@{date}'.format(barbery=self.barbery, date=self.start_time)
 
+    def can_be_reserved(self):
+        return not self.reserved
+
+    def reserve(self, user):
+        r = Reservation(slot=self, user=user)
+        r.save()
+        self.reserved = True
+        return self.save()
+
     @staticmethod
     def create_single(start_time, duration, barbery):
         if barbery.has_free_time(start_time, duration):

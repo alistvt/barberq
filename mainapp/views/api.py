@@ -62,12 +62,20 @@ class UserChangePasswordView(generics.UpdateAPIView):
         return user_profile
 
 
-class UserReserveTimeSlotView(generics.CreateAPIView):
+class UserReserveTimeSlotView(generics.UpdateAPIView):
+    queryset = TimeSlot.objects.all()
     serializer_class = UserReserveTimeSlotSerializer
     permission_classes = (IsAuthenticated, )
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    # def get_object(self):
+    #     return super().get_object()
+    #     user = self.request.user
+    #     user_profile = UserProfile.objects.get(pk=user.pk)
+    #     return user_profile
+
+    def perform_update(self, serializer):
+        serializer.validated_data['user'] = self.request.user
+        return serializer.update(serializer.instance, serializer.validated_data)
 
 
 class UserCancelReservationView(generics.DestroyAPIView):

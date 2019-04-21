@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^api/user/password/$', api.UserChangePasswordView.as_view(), name='user_change_password'),
     url(r'^api/user/$', api.UserActionsView.as_view(), name='user_actions'),
     url(r'^api/user/reservations/$', api.UserReservationsView.as_view(), name='user_reservations'),
+    url(r'^api/user/reserve/(?P<pk>\d+)/$', api.UserReserveTimeSlotView.as_view(), name='user_reserve'),
 ]
