@@ -5,8 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from mainapp.models import Barbery, UserProfile, TimeSlot, Reservation
 from mainapp.serializers import (BarberyListSerializer, BarberyTimeSlotListSerializer,
                                  UserProfileSerializer, UserSignUpSerializer, ReservationSerializer,
-                                 UserPasswordSerializer, UserReserveTimeSlotSerializer,
-                                 UserCancelReservationSerializer,)
+                                 UserPasswordSerializer, UserReserveTimeSlotSerializer, TimeSlotListSerializer)
 from mainapp.permissions import IsOwnerOfReservation
 
 
@@ -91,3 +90,12 @@ class UserCancelReservationView(generics.DestroyAPIView):
             raise serializers.ValidationError("time has passed and can't be cancelled.")
         instance.cancel()
         return super().perform_destroy(instance)
+
+
+class UserViewTimeSlots(generics.ListAPIView):
+    serializer_class = TimeSlotListSerializer
+
+    def get_queryset(self):
+        # TODO: Is this true?
+        search_dict = self.request.query_params
+        return TimeSlot.perform_search(search_dict)

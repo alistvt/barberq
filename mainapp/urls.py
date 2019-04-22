@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^api/user/reservations/$', api.UserReservationsView.as_view(), name='user_reservations'),
     url(r'^api/user/reserve/(?P<pk>\d+)/$', api.UserReserveTimeSlotView.as_view(), name='user_reserve'),
     url(r'^api/user/unreserve/(?P<pk>\d+)/$', api.UserCancelReservationView.as_view(), name='user_cancel_reserve'),
+    url(r'^api/user/slots/$', api.UserViewTimeSlots.as_view(), name='user_view_slots'),
 ]

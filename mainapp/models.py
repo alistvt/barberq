@@ -129,6 +129,24 @@ class TimeSlot(models.Model):
         # slots = barbery.time_slots.filter()
         pass
 
+    @staticmethod
+    def perform_search(search_dict):
+        now = datetime.now()
+        objects = TimeSlot.objects.filter(reserved=False, start_time__gt=now)
+
+        search_name = search_dict.get('name', None)
+        search_address = search_dict.get('address', None)
+        search_email = search_dict.get('email', None)
+
+        if search_name:
+            objects = objects.filter(barbery__name__contains=search_name)
+        if search_address:
+            objects = objects.filter(barbery__address__contains=search_address)
+        if search_email:
+            objects = objects.filter(barbery__email__contains=search_email)
+
+        return objects
+
 
 class Reservation(models.Model):
     user = models.ForeignKey(UserProfile, related_name='reservations', on_delete=models.CASCADE)
