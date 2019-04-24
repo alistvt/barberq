@@ -40,6 +40,12 @@ class UserSignUpSerializer(serializers.ModelSerializer):
             'email': {
                 'required': True,
             },
+            'first_name': {
+                'required': True,
+            },
+            'last_name': {
+                'required': True,
+            },
             'password': {
                 'write_only': True,
             }
@@ -58,24 +64,30 @@ class UserSignUpSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
-        # user = user_serializer.object
 
 
 class UserPasswordSerializer(serializers.Serializer):
-    password = serializers.CharField(max_length=200)
-    # password2 = serializers.CharField(max_length=200)
+    password = serializers.CharField(max_length=200, write_only=True)
+    confirm_password = serializers.CharField(max_length=200, required=True, label=_('confirm password'),
+                                             help_text=_('confirm password'), write_only=True)
 
-    def validate(self, data):
-        # if data['password'] != data['password2']:
-        #     raise serializers.ValidationError("passwords doesn't match.")
-        # data.pop('password2')
-        return data
+    def validate(self, attrs):
+        confirm_password = attrs.pop('confirm_password', None)
+        password = attrs.get('password')
+        if confirm_password != password:
+            raise serializers.ValidationError(_('passwords doesn\'t match.'))
+        return attrs
 
     def update(self, instance, validated_data):
-        # password =
         instance.set_password(validated_data['password'])
         instance.save()
         return instance
+
+    @property
+    def data(self):
+        return {
+            "message": _("password changed.")
+        }
 
 
 class BarberyTimeSlotReservationSerializer(serializers.ModelSerializer):
@@ -104,6 +116,7 @@ class UserReserveTimeSlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeSlot
         fields = ('reserved', 'start_time', 'duration', )
+        depth = 1
         extra_kwargs = {
             'reserved': {
                 'read_only': True,

@@ -5,7 +5,7 @@
         <div class="container">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="navbar-brand" href="#"><i class="fa fa-cut"></i> {% trans "BarberQ" %}</a>
+              <a class="navbar-brand" href="{% url 'mainapp:home' %}"><i class="fa fa-cut"></i> {% trans "BarberQ" %}</a>
             </li>
               {% if user.is_authenticated %}
             <li class="nav-item">

@@ -65,7 +65,6 @@ class UserProfile(User):
 
 
 class TimeSlot(models.Model):
-    # TODO: why I can't add verbose name here and what should I do???
     barbery = models.ForeignKey(Barbery, related_name='time_slots', on_delete=models.CASCADE, verbose_name=_('barbery'))
     created_date = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation Date'))
     start_time = models.DateTimeField(verbose_name=_('Start time'))
@@ -128,6 +127,12 @@ class TimeSlot(models.Model):
     def search_for_barbery(barbery, search_context):
         # slots = barbery.time_slots.filter()
         pass
+
+    @staticmethod
+    def get_not_passed():
+        now = datetime.now()
+        objects = TimeSlot.objects.filter(reserved=False, start_time__gt=now)
+        return objects
 
     @staticmethod
     def perform_search(search_dict):

@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from rest_framework import generics, serializers
+from rest_framework import generics, serializers, filters
 from rest_framework.permissions import IsAuthenticated
 from mainapp.models import Barbery, UserProfile, TimeSlot, Reservation
 from mainapp.serializers import (BarberyListSerializer, BarberyTimeSlotListSerializer,
@@ -22,10 +22,19 @@ class BarberyProfileView(generics.RetrieveAPIView):
 
 
 # TODO is this true or not?!
-class BarberyTimeSlotsListView(generics.RetrieveAPIView):
-    queryset = Barbery.objects.all()
-    serializer_class = BarberyTimeSlotListSerializer
+# class BarberyTimeSlotsListView(generics.RetrieveAPIView):
+#     queryset = Barbery.objects.all()
+#     serializer_class = BarberyTimeSlotListSerializer
+#     permission_classes = []
+
+
+class BarberyTimeSlotsListView(generics.ListAPIView):
+    serializer_class = TimeSlotListSerializer
     permission_classes = []
+
+    def get_queryset(self):
+        pk = self.kwargs.get('pk')
+        return TimeSlot.objects.filter(barbery__pk=pk)
 
 
 class UserSignUpView(generics.CreateAPIView):
@@ -51,10 +60,9 @@ class UserReservationsView(generics.ListAPIView):
     def get_queryset(self):
         user = self.request.user
         user_profile = UserProfile.objects.get(pk=user.pk)
-        # TODO: Is this true?
         passed = self.request.query_params.get('passed', None)
         if passed is None:
-            return user_profile.reservations
+            return user_profile.reservations.all()
         elif passed == '0':
             return user_profile.reservations.filter(slot__start_time__gt=datetime.now())
         elif passed == '1':
@@ -93,9 +101,12 @@ class UserCancelReservationView(generics.DestroyAPIView):
 
 
 class UserViewTimeSlots(generics.ListAPIView):
+    queryset = TimeSlot.get_not_passed()
     serializer_class = TimeSlotListSerializer
+    filter_backends = (filters.SearchFilter, )
+    search_fields = ('barbery__username', 'barbery__email', 'barbery__first_name', 'barbery__last_name', )
 
-    def get_queryset(self):
-        # TODO: Is this true?
-        search_dict = self.request.query_params
-        return TimeSlot.perform_search(search_dict)
+    # def get_queryset(self):
+        # search_dict = self.request.query_params
+        # return TimeSlot.perform_search(search_dict)
+        # return

@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url, include
 from rest_framework.authtoken import views as authtoken_views
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='BarberQ API')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api-docs/', schema_view),
     url(r'^api-token-auth/', authtoken_views.obtain_auth_token, name='api-token-auth'),
     # url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^', include('mainapp.urls', namespace='mainapp')),
