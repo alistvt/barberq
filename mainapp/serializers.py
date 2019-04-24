@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Barbery, TimeSlot, UserProfile, Reservation
+from django.utils.translation import ugettext_lazy as _
 
 
 class BarberyListSerializer(serializers.ModelSerializer):
@@ -29,9 +30,27 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 
 class UserSignUpSerializer(serializers.ModelSerializer):
+    confirm_password = serializers.CharField(max_length=200, required=True, label=_('confirm password'),
+                                             help_text=_('confirm password'), write_only=True)
+
     class Meta:
         model = UserProfile
-        fields = ('username', 'email', 'first_name', 'last_name', 'password', )
+        fields = ('username', 'email', 'first_name', 'last_name', 'password', 'confirm_password', )
+        extra_kwargs = {
+            'email': {
+                'required': True,
+            },
+            'password': {
+                'write_only': True,
+            }
+        }
+
+    def validate(self, attrs):
+        confirm_password = attrs.pop('confirm_password', None)
+        password = attrs.get('password')
+        if confirm_password != password:
+            raise serializers.ValidationError(_('passwords doesn\'t match.'))
+        return attrs
 
     def create(self, validated_data):
         password = validated_data.pop('password')
@@ -84,7 +103,18 @@ class ReservationSerializer(serializers.ModelSerializer):
 class UserReserveTimeSlotSerializer(serializers.ModelSerializer):
     class Meta:
         model = TimeSlot
-        fields = ()
+        fields = ('reserved', 'start_time', 'duration', )
+        extra_kwargs = {
+            'reserved': {
+                'read_only': True,
+            },
+            'start_time': {
+                'read_only': True,
+            },
+            'duration': {
+                'read_only': True,
+            },
+        }
 
     def update(self, instance, validated_data):
         if not instance.can_be_reserved():

@@ -31,6 +31,7 @@ class BarberyTimeSlotsListView(generics.RetrieveAPIView):
 class UserSignUpView(generics.CreateAPIView):
     queryset = UserProfile.objects.all()
     serializer_class = UserSignUpSerializer
+    permission_classes = []
 
 
 class UserActionsView(generics.RetrieveUpdateDestroyAPIView):
@@ -85,7 +86,6 @@ class UserCancelReservationView(generics.DestroyAPIView):
     permission_classes = (IsAuthenticated, IsOwnerOfReservation, )
 
     def perform_destroy(self, instance):
-        # TODO : Logic on serializers?
         if not instance.can_cancel():
             raise serializers.ValidationError("time has passed and can't be cancelled.")
         instance.cancel()
